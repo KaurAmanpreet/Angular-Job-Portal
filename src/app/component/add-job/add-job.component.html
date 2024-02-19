@@ -1,0 +1,54 @@
+<!-- job.component.html -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5">
+        <h1 class="fw-bolder">All Posted Jobs</h1>
+    </div>
+    <div class="row gx-5">
+        <div>
+          <form [formGroup]="jobForm" (ngSubmit)="addJob()">
+            <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input type="text" class="form-control" id="companyName" formControlName="companyName">
+            </div>
+      
+            <div class="form-group">
+              <label for="jobType">Job Type</label>
+              <input type="text" class="form-control" id="jobType" formControlName="jobType">
+            </div>
+      
+            <div class="form-group">
+              <label for="jobDescription">Job Description</label>
+              <textarea class="form-control" id="jobDescription" formControlName="jobDescription"></textarea>
+            </div>
+      
+            <div class="form-group">
+              <label for="jobLocation">Job Location</label>
+              <input type="text" class="form-control" id="jobLocation" formControlName="jobLocation">
+            </div>
+      
+            <div class="form-group">
+              <label for="skills">Skills</label>
+              <input type="text" class="form-control" id="skills" formControlName="skills">
+              <!-- <ul>
+                <li *ngFor="let skill of skills.value">{{ skill }}</li>
+              </ul> -->
+            </div>
+      
+            <div class="form-group">
+              <label for="experienceLevel">Experience Level</label>
+              <input type="text" class="form-control" id="experienceLevel" formControlName="experienceLevel">
+            </div>
+      
+            <div class="form-group">
+              <label for="isActive">Is Active</label>
+              <input type="checkbox" class="form-check-input" id="isActive" formControlName="isActive">
+            </div>
+      
+            <button type="submit" class="btn btn-primary">Add Job</button>
+          </form>
+        </div>
+    </div>
+  </div>
+</section>
+

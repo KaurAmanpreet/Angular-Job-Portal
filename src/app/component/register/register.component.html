@@ -1,0 +1,45 @@
+<!-- register.component.html -->
+<div class="container mt-4">
+  <h2>Register</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" class="form-control">
+      <div *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched">
+        Username is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+      <div *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched">
+        Email is required.
+      </div>
+      <div *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').touched">
+        Please enter a valid email address.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" class="form-control">
+      <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
+        Password is required.
+      </div>
+      <div *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched">
+        Password must be at least 6 characters long.
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="isAdmin">Is Admin:</label>
+      <input type="checkbox" id="isAdmin" formControlName="isAdmin" class="form-check-input">
+      <div *ngIf="registerForm.get('isAdmin').hasError('required') && registerForm.get('isAdmin').touched">
+        Please agree to the terms.
+      </div>
+    </div> -->
+
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>

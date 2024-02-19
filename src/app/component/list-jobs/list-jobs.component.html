@@ -1,0 +1,32 @@
+<section>
+  <div class="container">
+    <div class="row mb-3">
+        <h1 class="fw-bolder">All Posted Jobs</h1>
+    </div>
+    <ng-template #noJobs>
+      <p>No jobs available.</p>
+    </ng-template>
+    <div class="row gx-5" *ngIf="filteredJobs && filteredJobs.length > 0; else noJobs">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Company</th>
+            <th scope="col">JobType</th>
+            <th scope="col">JobDesc</th>
+            <th scope="col">Experience</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let job of filteredJobs">
+            <th scope="row"></th>
+            <td>{{ job.companyName }}</td>
+            <td>{{ job.jobType }}</td>
+            <td>{{ job.jobDescription}}</td>
+            <td>{{ job.experienceLevel}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

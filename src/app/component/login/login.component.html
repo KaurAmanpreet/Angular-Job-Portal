@@ -1,0 +1,40 @@
+<!-- Login form-->
+<div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+  <!-- login.component.html -->
+  <div class="container mt-4">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label for="email">Email:</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+            <div *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+              Email is required.
+            </div>
+            <div *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').touched">
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="password">Password:</label>
+            <input type="password" id="password" formControlName="password" class="form-control">
+            <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+              Password is required.
+            </div>
+            <div *ngIf="loginForm.get('password').hasError('minlength') && loginForm.get('password').touched">
+              Password must be at least 6 characters long.
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+          <div class="row mt-3">
+              <a routerLink="/register" style="text-decoration: none;">Need account?  <span class="text">Register</span></a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Login Form-->
