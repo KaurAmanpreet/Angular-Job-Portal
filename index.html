@@ -383,12 +383,24 @@
     align-items: start;
   }
   .ports {
-    list-style: none;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
     margin-bottom: 36px;
   }
+  .ports-region {
+    grid-column: 1 / -1;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: .68rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    padding: 18px 0 6px;
+    border-top: 1px solid var(--line);
+  }
+  .ports-region:first-child { padding-top: 0; border-top: 0; }
+  .map-sticky { position: sticky; top: 96px; }
   .port-item {
     display: flex;
     align-items: center;
@@ -727,7 +739,8 @@
     .cov-layout,
     .about-layout,
     .contact-layout { grid-template-columns: 1fr; gap: 40px; }
-    .ports { grid-template-columns: 1fr 1fr 1fr; }
+    .ports { grid-template-columns: 1fr 1fr; }
+    .map-sticky { position: static; }
   }
   @media (max-width: 680px) {
     header { top: 8px; left: 10px; right: 10px; }
@@ -839,7 +852,7 @@
   <div class="wrap">
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
-      <span data-en="Cargo-hold specialists across 6 St. Lawrence ports" data-fr="Spécialistes des cales — 6 ports du Saint-Laurent" data-es="Especialistas en bodegas — 6 puertos del San Lorenzo" data-zh="圣劳伦斯河货舱专家 — 6个港口">Cargo-hold specialists across 6 St. Lawrence ports</span>
+      <span data-en="Cargo-hold specialists across 18 St. Lawrence ports" data-fr="Spécialistes des cales — 18 ports du Saint-Laurent" data-es="Especialistas en bodegas — 18 puertos del San Lorenzo" data-zh="圣劳伦斯河货舱专家 — 18个港口">Cargo-hold specialists across 18 St. Lawrence ports</span>
     </div>
     <h1
       data-en='<span class="h1-line"><span class="h1-inner">From the iron ports</span></span><span class="h1-line"><span class="h1-inner">to the grain docks —</span></span><span class="h1-line"><span class="h1-inner">we keep you <em>moving.</em></span></span>'
@@ -874,7 +887,7 @@
       <div class="trust-divider" aria-hidden="true"></div>
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span data-en="6 St. Lawrence ports" data-fr="6 ports du Saint-Laurent" data-es="6 puertos en el San Lorenzo" data-zh="圣劳伦斯河6个港口">6 St. Lawrence ports</span>
+        <span data-en="18 St. Lawrence ports" data-fr="18 ports du Saint-Laurent" data-es="18 puertos en el San Lorenzo" data-zh="圣劳伦斯河18个港口">18 St. Lawrence ports</span>
       </div>
     </div>
   </div>
@@ -957,7 +970,7 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow" data-en="Where we work" data-fr="Notre territoire" data-es="Dónde trabajamos" data-zh="作业区域">Where we work</span>
-      <h2 data-en="Six ports, one corridor" data-fr="Six ports, un corridor" data-es="Seis puertos, un corredor" data-zh="六大港口，一条航线">Six ports, one corridor</h2>
+      <h2 data-en="18 ports, one corridor" data-fr="18 ports, un corridor" data-es="18 puertos, un corredor" data-zh="18个港口，一条航线">18 ports, one corridor</h2>
       <p data-en="Mobile crews dispatched along the St. Lawrence and Saguenay — vessel to vessel." data-fr="Équipes mobiles déployées sur le Saint-Laurent et le Saguenay — d'un navire à l'autre." data-es="Equipos móviles despachados por el San Lorenzo y Saguenay — de buque en buque." data-zh="机动团队沿圣劳伦斯河及萨格奈河部署，船到船服务。">
         Mobile crews dispatched along the St. Lawrence and Saguenay — vessel to vessel.
       </p>
@@ -965,18 +978,35 @@
     <div class="cov-layout">
       <div>
         <ul class="ports" aria-label="Ports we service">
-          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Sept-Îles</li>
-          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Port-Cartier</li>
-          <li class="port-item"><div class="port-dot" aria-hidden="true"></div><span data-en="Québec City" data-fr="Québec" data-es="Ciudad de Québec" data-zh="魁北克城">Québec City</span></li>
-          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Trois-Rivières</li>
-          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Bécancour</li>
+          <li class="ports-region" data-en="Upper River" data-fr="Fleuve supérieur" data-es="Río Superior" data-zh="上游河段">Upper River</li>
           <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Montréal</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Contrecoeur</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Sorel-Tracy</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Bécancour</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Trois-Rivières</li>
+          <li class="ports-region" data-en="Québec Region" data-fr="Région de Québec" data-es="Región de Québec" data-zh="魁北克城区">Québec Region</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Deschambault</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div><span data-en="Québec City" data-fr="Québec" data-es="Ciudad de Québec" data-zh="魁北克城">Québec City</span></li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Lévis</li>
+          <li class="ports-region" data-en="Lower River" data-fr="Bas-Saint-Laurent" data-es="Bajo San Lorenzo" data-zh="下游地区">Lower River</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Cacouna</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Rimouski</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Matane</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Gaspé</li>
+          <li class="ports-region" data-en="Côte-Nord" data-fr="Côte-Nord" data-es="Costa Norte" data-zh="北岸">Côte-Nord</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Baie-Comeau</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Port-Cartier</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Pointe-Noire</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Sept-Îles</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Havre-Saint-Pierre</li>
+          <li class="ports-region" data-en="Saguenay" data-fr="Saguenay" data-es="Saguenay" data-zh="萨格奈河">Saguenay</li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Port de Saguenay</li>
         </ul>
         <a class="btn btn-primary" href="#contact" data-en="Request dispatch" data-fr="Demander une intervention" data-es="Solicitar despacho" data-zh="申请调度">Request dispatch</a>
       </div>
-      <div class="map-card">
+      <div class="map-sticky"><div class="map-card">
         <img id="mapImg" src="" alt="Major seaports along the St. Lawrence River, Quebec">
-      </div>
+      </div></div>
     </div>
   </div>
 </section>
@@ -1012,7 +1042,7 @@
       <div>
         <div class="stats-panel">
           <div class="stat-cell">
-            <div class="stat-big" data-count="6">6</div>
+            <div class="stat-big">18</div>
             <div class="stat-lbl" data-en="Ports served" data-fr="Ports desservis" data-es="Puertos atendidos" data-zh="服务港口">Ports served</div>
           </div>
           <div class="stat-cell">
