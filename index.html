@@ -665,6 +665,62 @@
     }
   }
 
+
+  /* ── Language picker dropdown ───────────────────────────────── */
+  .lang-picker { position: relative; }
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .lang-btn svg { transition: transform .2s ease; flex: none; }
+  .lang-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 158px;
+    background: #0D1C2B;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 12px 36px rgba(0,0,0,.55);
+    opacity: 0;
+    transform: translateY(-8px) scale(.97);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+    z-index: 200;
+  }
+  .lang-menu.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    color: var(--mist);
+    transition: background .15s, color .15s;
+  }
+  .lang-option:hover,
+  .lang-option:focus { background: rgba(255,255,255,.07); color: var(--white); outline: none; }
+  .lang-option.active { color: var(--amber); background: rgba(245,158,11,.08); }
+  .lang-code {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: .82rem;
+    min-width: 28px;
+    letter-spacing: .04em;
+  }
+  .lang-name {
+    font-size: .88rem;
+    font-weight: 500;
+    opacity: .8;
+  }
   /* ── Responsive ──────────────────────────────────────────── */
   @media (max-width: 960px) {
     .service-grid { grid-template-columns: 1fr 1fr; }
@@ -740,13 +796,32 @@
     </a>
 
     <nav class="links" id="nav" aria-label="Main navigation">
-      <a href="#services" data-en="Services" data-fr="Services">Services</a>
-      <a href="#coverage" data-en="Coverage" data-fr="Territoire">Coverage</a>
-      <a href="#about" data-en="About" data-fr="À propos">About</a>
-      <a href="#careers" data-en="Careers" data-fr="Carrières">Careers</a>
-      <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
-      <button class="lang-btn" id="lang" aria-label="Switch language">FR</button>
-      <a class="btn btn-primary nav-cta" href="#contact" data-en="Get a quote" data-fr="Soumission">Get a quote</a>
+      <a href="#services" data-en="Services" data-fr="Services" data-es="Servicios" data-zh="服务">Services</a>
+      <a href="#coverage" data-en="Coverage" data-fr="Territoire" data-es="Cobertura" data-zh="覆盖区域">Coverage</a>
+      <a href="#about" data-en="About" data-fr="À propos" data-es="Nosotros" data-zh="关于我们">About</a>
+      <a href="#careers" data-en="Careers" data-fr="Carrières" data-es="Empleos" data-zh="职业机会">Careers</a>
+      <a href="#contact" data-en="Contact" data-fr="Contact" data-es="Contacto" data-zh="联系我们">Contact</a>
+      <div class="lang-picker" id="langPicker">
+        <button class="lang-btn" id="lang" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
+          <span id="langLabel">EN</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-menu" id="langMenu" role="listbox" aria-label="Language options">
+          <div class="lang-option active" data-lang="en" role="option" aria-selected="true" tabindex="0">
+            <span class="lang-code">EN</span><span class="lang-name">English</span>
+          </div>
+          <div class="lang-option" data-lang="fr" role="option" aria-selected="false" tabindex="0">
+            <span class="lang-code">FR</span><span class="lang-name">Français</span>
+          </div>
+          <div class="lang-option" data-lang="es" role="option" aria-selected="false" tabindex="0">
+            <span class="lang-code">ES</span><span class="lang-name">Español</span>
+          </div>
+          <div class="lang-option" data-lang="zh" role="option" aria-selected="false" tabindex="0">
+            <span class="lang-code">中文</span><span class="lang-name">Mandarin</span>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-primary nav-cta" href="#contact" data-en="Get a quote" data-fr="Soumission" data-es="Cotización" data-zh="获取报价">Get a quote</a>
     </nav>
 
     <button class="menu-btn" id="menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
@@ -764,40 +839,42 @@
   <div class="wrap">
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
-      <span data-en="Cargo-hold specialists across 6 St. Lawrence ports" data-fr="Spécialistes des cales — 6 ports du Saint-Laurent">Cargo-hold specialists across 6 St. Lawrence ports</span>
+      <span data-en="Cargo-hold specialists across 6 St. Lawrence ports" data-fr="Spécialistes des cales — 6 ports du Saint-Laurent" data-es="Especialistas en bodegas — 6 puertos del San Lorenzo" data-zh="圣劳伦斯河货舱专家 — 6个港口">Cargo-hold specialists across 6 St. Lawrence ports</span>
     </div>
     <h1
       data-en='<span class="h1-line"><span class="h1-inner">From the iron ports</span></span><span class="h1-line"><span class="h1-inner">to the grain docks —</span></span><span class="h1-line"><span class="h1-inner">we keep you <em>moving.</em></span></span>'
       data-fr='<span class="h1-line"><span class="h1-inner">Des ports de minerai</span></span><span class="h1-line"><span class="h1-inner">aux quais à grain —</span></span><span class="h1-line"><span class="h1-inner">on vous garde <em>en marche.</em></span></span>'
+      data-es='<span class="h1-line"><span class="h1-inner">De los puertos de hierro</span></span><span class="h1-line"><span class="h1-inner">a los muelles de grano —</span></span><span class="h1-line"><span class="h1-inner">los mantenemos en <em>marcha.</em></span></span>'
+      data-zh='<span class="h1-line"><span class="h1-inner">从铁矿石港口</span></span><span class="h1-line"><span class="h1-inner">到粮食码头 —</span></span><span class="h1-line"><span class="h1-inner">我们让您<em>一路畅行。</em></span></span>'
     >
       <span class="h1-line"><span class="h1-inner">From the iron ports</span></span>
       <span class="h1-line"><span class="h1-inner">to the grain docks —</span></span>
       <span class="h1-line"><span class="h1-inner">we keep you <em>moving.</em></span></span>
     </h1>
-    <p class="lede" data-en="From bulk carriers to tankers — hold cleaning, tank and engine-room work, wash-water recovery, de-icing and hold heating. Wherever your vessel docks on the St. Lawrence." data-fr="Des vraquiers aux pétroliers — nettoyage de cales, citernes et salle des machines, récupération des eaux, déglaçage et chauffage. Partout où votre navire accoste sur le Saint-Laurent.">
+    <p class="lede" data-en="From bulk carriers to tankers — hold cleaning, tank and engine-room work, wash-water recovery, de-icing and hold heating. Wherever your vessel docks on the St. Lawrence." data-fr="Des vraquiers aux pétroliers — nettoyage de cales, citernes et salle des machines, récupération des eaux, déglaçage et chauffage. Partout où votre navire accoste sur le Saint-Laurent." data-es="De graneleros a buques cisterna — limpieza de bodegas, sala de máquinas y tanques, recuperación de aguas, deshielo y calefacción. En cualquier puerto del San Lorenzo." data-zh="从散货船到油轮——货舱清洗、机舱及油箱清洁、污水回收、除冰及加热。遍布圣劳伦斯河沿岸各大港口。">
       From bulk carriers to tankers — hold cleaning, tank and engine-room work, wash-water recovery, de-icing and hold heating. Wherever your vessel docks on the St. Lawrence.
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#contact" data-en="Request a quote" data-fr="Demander une soumission">
+      <a class="btn btn-primary" href="#contact" data-en="Request a quote" data-fr="Demander une soumission" data-es="Solicitar cotización" data-zh="申请报价">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         Request a quote
       </a>
-      <a class="btn btn-outline" href="#services" data-en="See services" data-fr="Voir les services">See services</a>
+      <a class="btn btn-outline" href="#services" data-en="See services" data-fr="Voir les services" data-es="Ver servicios" data-zh="查看服务">See services</a>
     </div>
     <div class="hero-trust">
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span data-en="CFIA &amp; USDA certified" data-fr="Certifié ACIA &amp; USDA">CFIA &amp; USDA certified</span>
+        <span data-en="CFIA &amp; USDA certified" data-fr="Certifié ACIA &amp; USDA" data-es="Certificado CFIA y USDA" data-zh="CFIA及USDA认证">CFIA &amp; USDA certified</span>
       </div>
       <div class="trust-divider" aria-hidden="true"></div>
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span data-en="24/7 dispatch" data-fr="Répartition 24/7">24/7 dispatch</span>
+        <span data-en="24/7 dispatch" data-fr="Répartition 24/7" data-es="Despacho 24/7" data-zh="全天候调度">24/7 dispatch</span>
       </div>
       <div class="trust-divider" aria-hidden="true"></div>
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span data-en="6 St. Lawrence ports" data-fr="6 ports du Saint-Laurent">6 St. Lawrence ports</span>
+        <span data-en="6 St. Lawrence ports" data-fr="6 ports du Saint-Laurent" data-es="6 puertos en el San Lorenzo" data-zh="圣劳伦斯河6个港口">6 St. Lawrence ports</span>
       </div>
     </div>
   </div>
@@ -808,10 +885,10 @@
   <div class="wrap">
     <div class="sec-head sec-head-row">
       <div>
-        <span class="eyebrow" data-en="What we do" data-fr="Nos services">What we do</span>
-        <h2 data-en="Port &amp; marine services" data-fr="Services maritimes et portuaires">Port &amp; marine services</h2>
+        <span class="eyebrow" data-en="What we do" data-fr="Nos services" data-es="Lo que hacemos" data-zh="我们的业务">What we do</span>
+        <h2 data-en="Port &amp; marine services" data-fr="Services maritimes et portuaires" data-es="Servicios portuarios y marítimos" data-zh="港口及海运服务">Port &amp; marine services</h2>
       </div>
-      <p data-en="One crew for the dirty work between cargoes — built around food-grade and inspection standards." data-fr="Une équipe pour le travail sale entre les cargaisons — pensée pour les normes alimentaires et d'inspection.">
+      <p data-en="One crew for the dirty work between cargoes — built around food-grade and inspection standards." data-fr="Une équipe pour le travail sale entre les cargaisons — pensée pour les normes alimentaires et d'inspection." data-es="Un equipo para el trabajo entre cargas — basado en estándares de inspección alimentaria." data-zh="专业团队负责货物装卸间的清洁工作——符合食品级及检验标准。">
         One crew for the dirty work between cargoes — built around food-grade and inspection standards.
       </p>
     </div>
@@ -823,8 +900,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/></svg>
         </div>
         <div class="service-num">01</div>
-        <h3 data-en="Hold cleaning" data-fr="Nettoyage de cales">Hold cleaning</h3>
-        <p data-en="Cargo holds cleaned to CFIA and USDA grain standards, ready for inspection." data-fr="Cales nettoyées aux normes ACIA et USDA, prêtes pour l'inspection.">Cargo holds cleaned to CFIA and USDA grain standards, ready for inspection.</p>
+        <h3 data-en="Hold cleaning" data-fr="Nettoyage de cales" data-es="Limpieza de bodegas" data-zh="货舱清洗">Hold cleaning</h3>
+        <p data-en="Cargo holds cleaned to CFIA and USDA grain standards, ready for inspection." data-fr="Cales nettoyées aux normes ACIA et USDA, prêtes pour l'inspection." data-es="Bodegas limpiadas según normas CFIA y USDA, listas para inspección." data-zh="货舱按CFIA和USDA谷物标准清洗，通过检验。">Cargo holds cleaned to CFIA and USDA grain standards, ready for inspection.</p>
       </div>
       <!-- 02 -->
       <div class="service-card">
@@ -832,8 +909,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M4.93 19.07l1.41-1.41M19.07 19.07l-1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
         </div>
         <div class="service-num">02</div>
-        <h3 data-en="Tanks &amp; engine room" data-fr="Citernes et salle des machines">Tanks &amp; engine room</h3>
-        <p data-en="Cleaning of tanks, engine rooms, bilges and confined spaces." data-fr="Nettoyage des citernes, salles des machines, fonds de cale et espaces clos.">Cleaning of tanks, engine rooms, bilges and confined spaces.</p>
+        <h3 data-en="Tanks &amp; engine room" data-fr="Citernes et salle des machines" data-es="Tanques y sala de máquinas" data-zh="油箱及机舱">Tanks &amp; engine room</h3>
+        <p data-en="Cleaning of tanks, engine rooms, bilges and confined spaces." data-fr="Nettoyage des citernes, salles des machines, fonds de cale et espaces clos." data-es="Limpieza de tanques, salas de máquinas, sentinas y espacios confinados." data-zh="油箱、机舱、舱底及密闭空间清洁。">Cleaning of tanks, engine rooms, bilges and confined spaces.</p>
       </div>
       <!-- 03 -->
       <div class="service-card">
@@ -841,8 +918,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
         </div>
         <div class="service-num">03</div>
-        <h3 data-en="Equipment cleaning" data-fr="Équipement portuaire">Equipment cleaning</h3>
-        <p data-en="Heavy machinery, conveyors and port equipment washed down on site." data-fr="Machinerie lourde, convoyeurs et équipement portuaire lavés sur place.">Heavy machinery, conveyors and port equipment washed down on site.</p>
+        <h3 data-en="Equipment cleaning" data-fr="Équipement portuaire" data-es="Limpieza de equipos" data-zh="设备清洗">Equipment cleaning</h3>
+        <p data-en="Heavy machinery, conveyors and port equipment washed down on site." data-fr="Machinerie lourde, convoyeurs et équipement portuaire lavés sur place." data-es="Maquinaria pesada, transportadores y equipos portuarios limpiados en sitio." data-zh="重型机械、传送带及港口设备现场清洗。">Heavy machinery, conveyors and port equipment washed down on site.</p>
       </div>
       <!-- 04 -->
       <div class="service-card">
@@ -850,8 +927,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
         <div class="service-num">04</div>
-        <h3 data-en="Wash-water recovery" data-fr="Récupération des eaux">Wash-water recovery</h3>
-        <p data-en="Pumping, recovery and treatment of wash water, oily water, sludge, bilges and slops." data-fr="Pompage, récupération et traitement des eaux de lavage, eaux huileuses, boues et slops.">Pumping, recovery and treatment of wash water, oily water, sludge, bilges and slops.</p>
+        <h3 data-en="Wash-water recovery" data-fr="Récupération des eaux" data-es="Recuperación de aguas" data-zh="污水回收">Wash-water recovery</h3>
+        <p data-en="Pumping, recovery and treatment of wash water, oily water, sludge, bilges and slops." data-fr="Pompage, récupération et traitement des eaux de lavage, eaux huileuses, boues et slops." data-es="Bombeo, recuperación y tratamiento de aguas de lavado, aguas aceitosas, lodos y sentinas." data-zh="清洗废水、含油废水、污泥及舱底水的抽排、回收与处理。">Pumping, recovery and treatment of wash water, oily water, sludge, bilges and slops.</p>
       </div>
       <!-- 05 -->
       <div class="service-card">
@@ -859,8 +936,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12c0 5.52 4.48 10 10 10s10-4.48 10-10"/></svg>
         </div>
         <div class="service-num">05</div>
-        <h3 data-en="De-icing" data-fr="Déglaçage">De-icing</h3>
-        <p data-en="Winter de-icing of holds, hatches and deck equipment along the corridor." data-fr="Déglaçage hivernal des cales, panneaux et équipements de pont sur le corridor.">Winter de-icing of holds, hatches and deck equipment along the corridor.</p>
+        <h3 data-en="De-icing" data-fr="Déglaçage" data-es="Deshielo" data-zh="除冰作业">De-icing</h3>
+        <p data-en="Winter de-icing of holds, hatches and deck equipment along the corridor." data-fr="Déglaçage hivernal des cales, panneaux et équipements de pont sur le corridor." data-es="Deshielo invernal de bodegas, escotillas y equipos de cubierta en el corredor." data-zh="冬季货舱、舱盖及甲板设备除冰。">Winter de-icing of holds, hatches and deck equipment along the corridor.</p>
       </div>
       <!-- 06 -->
       <div class="service-card">
@@ -868,8 +945,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <div class="service-num">06</div>
-        <h3 data-en="Hold heating" data-fr="Chauffage de cales">Hold heating</h3>
-        <p data-en="Cargo-hold and accommodation heating to keep cargo and crews in spec." data-fr="Chauffage des cales et des aménagements pour garder cargaison et équipage aux normes.">Cargo-hold and accommodation heating to keep cargo and crews in spec.</p>
+        <h3 data-en="Hold heating" data-fr="Chauffage de cales" data-es="Calefacción de bodegas" data-zh="货舱加热">Hold heating</h3>
+        <p data-en="Cargo-hold and accommodation heating to keep cargo and crews in spec." data-fr="Chauffage des cales et des aménagements pour garder cargaison et équipage aux normes." data-es="Calefacción de bodegas y alojamientos para mantener la carga y tripulación en especificación." data-zh="货舱及住舱加热，确保货物和船员符合规范。">Cargo-hold and accommodation heating to keep cargo and crews in spec.</p>
       </div>
     </div>
   </div>
@@ -879,9 +956,9 @@
 <section id="coverage" class="coverage">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow" data-en="Where we work" data-fr="Notre territoire">Where we work</span>
-      <h2 data-en="Six ports, one corridor" data-fr="Six ports, un corridor">Six ports, one corridor</h2>
-      <p data-en="Mobile crews dispatched along the St. Lawrence and Saguenay — vessel to vessel." data-fr="Équipes mobiles déployées sur le Saint-Laurent et le Saguenay — d'un navire à l'autre.">
+      <span class="eyebrow" data-en="Where we work" data-fr="Notre territoire" data-es="Dónde trabajamos" data-zh="作业区域">Where we work</span>
+      <h2 data-en="Six ports, one corridor" data-fr="Six ports, un corridor" data-es="Seis puertos, un corredor" data-zh="六大港口，一条航线">Six ports, one corridor</h2>
+      <p data-en="Mobile crews dispatched along the St. Lawrence and Saguenay — vessel to vessel." data-fr="Équipes mobiles déployées sur le Saint-Laurent et le Saguenay — d'un navire à l'autre." data-es="Equipos móviles despachados por el San Lorenzo y Saguenay — de buque en buque." data-zh="机动团队沿圣劳伦斯河及萨格奈河部署，船到船服务。">
         Mobile crews dispatched along the St. Lawrence and Saguenay — vessel to vessel.
       </p>
     </div>
@@ -890,12 +967,12 @@
         <ul class="ports" aria-label="Ports we service">
           <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Sept-Îles</li>
           <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Port-Cartier</li>
-          <li class="port-item"><div class="port-dot" aria-hidden="true"></div><span data-en="Québec City" data-fr="Québec">Québec City</span></li>
+          <li class="port-item"><div class="port-dot" aria-hidden="true"></div><span data-en="Québec City" data-fr="Québec" data-es="Ciudad de Québec" data-zh="魁北克城">Québec City</span></li>
           <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Trois-Rivières</li>
           <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Bécancour</li>
           <li class="port-item"><div class="port-dot" aria-hidden="true"></div>Montréal</li>
         </ul>
-        <a class="btn btn-primary" href="#contact" data-en="Request dispatch" data-fr="Demander une intervention">Request dispatch</a>
+        <a class="btn btn-primary" href="#contact" data-en="Request dispatch" data-fr="Demander une intervention" data-es="Solicitar despacho" data-zh="申请调度">Request dispatch</a>
       </div>
       <div class="map-card">
         <img id="mapImg" src="" alt="Major seaports along the St. Lawrence River, Quebec">
@@ -909,12 +986,12 @@
   <div class="wrap">
     <div class="about-layout">
       <div class="about-text">
-        <span class="eyebrow" data-en="Who we are" data-fr="Qui nous sommes">Who we are</span>
-        <h2 data-en="Quebec-built marine services" data-fr="Services maritimes d'ici">Quebec-built marine services</h2>
-        <p data-en="Laurentide Marine is a Quebec company serving ship owners, agencies, charterers and port authorities across the Great Lakes, the St. Lawrence and Saguenay, and the Maritimes." data-fr="Laurentide Marine est une entreprise québécoise au service des armateurs, agences, affréteurs et autorités portuaires des Grands Lacs, du Saint-Laurent, du Saguenay et des Maritimes.">
+        <span class="eyebrow" data-en="Who we are" data-fr="Qui nous sommes" data-es="Quiénes somos" data-zh="关于我们">Who we are</span>
+        <h2 data-en="Quebec-built marine services" data-fr="Services maritimes d'ici" data-es="Servicios marítimos de Quebec" data-zh="魁北克本土海运服务">Quebec-built marine services</h2>
+        <p data-en="Laurentide Marine is a Quebec company serving ship owners, agencies, charterers and port authorities across the Great Lakes, the St. Lawrence and Saguenay, and the Maritimes." data-fr="Laurentide Marine est une entreprise québécoise au service des armateurs, agences, affréteurs et autorités portuaires des Grands Lacs, du Saint-Laurent, du Saguenay et des Maritimes." data-es="Laurentide Marine es una empresa de Quebec que sirve a armadores, agencias, fletadores y autoridades portuarias en los Grandes Lagos, el San Lorenzo, el Saguenay y las Provincias Marítimas." data-zh="Laurentide Marine是一家魁北克公司，为大湖区、圣劳伦斯河、萨格奈河及大西洋省份的船东、代理商、租船人和港务局提供服务。">
           Laurentide Marine is a Quebec company serving ship owners, agencies, charterers and port authorities across the Great Lakes, the St. Lawrence and Saguenay, and the Maritimes.
         </p>
-        <p data-en="We work to food-grade inspection standards, move fast on tight port windows, and handle wash-water and waste responsibly — so vessels turn around clean and on time." data-fr="Nous travaillons aux normes d'inspection alimentaire, agissons vite dans des fenêtres portuaires serrées et gérons les eaux et résidus de façon responsable — pour des navires propres et repartis à temps.">
+        <p data-en="We work to food-grade inspection standards, move fast on tight port windows, and handle wash-water and waste responsibly — so vessels turn around clean and on time." data-fr="Nous travaillons aux normes d'inspection alimentaire, agissons vite dans des fenêtres portuaires serrées et gérons les eaux et résidus de façon responsable — pour des navires propres et repartis à temps." data-es="Trabajamos según normas de inspección alimentaria, actuamos rápido en ventanas portuarias ajustadas y gestionamos las aguas de lavado y residuos responsablemente — para que los buques giren limpios y a tiempo." data-zh="我们按食品级检验标准作业，在紧张的靠港窗口内快速响应，并负责任地处理清洗废水及固体废物——确保船舶按时完成清洁并离港。">
           We work to food-grade inspection standards, move fast on tight port windows, and handle wash-water and waste responsibly — so vessels turn around clean and on time.
         </p>
         <div class="credentials">
@@ -936,19 +1013,19 @@
         <div class="stats-panel">
           <div class="stat-cell">
             <div class="stat-big" data-count="6">6</div>
-            <div class="stat-lbl" data-en="Ports served" data-fr="Ports desservis">Ports served</div>
+            <div class="stat-lbl" data-en="Ports served" data-fr="Ports desservis" data-es="Puertos atendidos" data-zh="服务港口">Ports served</div>
           </div>
           <div class="stat-cell">
             <div class="stat-big">24/7</div>
-            <div class="stat-lbl" data-en="Dispatch on call" data-fr="Répartition sur appel">Dispatch on call</div>
+            <div class="stat-lbl" data-en="Dispatch on call" data-fr="Répartition sur appel" data-es="Despacho disponible" data-zh="随叫随到">Dispatch on call</div>
           </div>
           <div class="stat-cell">
             <div class="stat-big">CFIA</div>
-            <div class="stat-lbl" data-en="&amp; USDA standards" data-fr="et normes USDA">&amp; USDA standards</div>
+            <div class="stat-lbl" data-en="&amp; USDA standards" data-fr="et normes USDA" data-es="y normas USDA" data-zh="及USDA标准">&amp; USDA standards</div>
           </div>
           <div class="stat-cell">
             <div class="stat-big">100%</div>
-            <div class="stat-lbl" data-en="Wash-water recovered" data-fr="Eaux récupérées">Wash-water recovered</div>
+            <div class="stat-lbl" data-en="Wash-water recovered" data-fr="Eaux récupérées" data-es="Aguas residuales recuperadas" data-zh="污水回收率">Wash-water recovered</div>
           </div>
         </div>
       </div>
@@ -961,12 +1038,12 @@
   <div class="wrap">
     <div class="band-inner">
       <div>
-        <h2 data-en="Want to join the crew?" data-fr="Envie de rejoindre l'équipe ?">Want to join the crew?</h2>
-        <p data-en="We're always looking for experienced marine service technicians across the St. Lawrence corridor." data-fr="Nous recherchons des techniciens expérimentés en services maritimes sur tout le corridor du Saint-Laurent.">
+        <h2 data-en="Want to join the crew?" data-fr="Envie de rejoindre l'équipe ?" data-es="¿Quiere unirse al equipo?" data-zh="想加入我们的团队？">Want to join the crew?</h2>
+        <p data-en="We're always looking for experienced marine service technicians across the St. Lawrence corridor." data-fr="Nous recherchons des techniciens expérimentés en services maritimes sur tout le corridor du Saint-Laurent." data-es="Siempre buscamos técnicos de servicios marítimos con experiencia en el corredor del San Lorenzo." data-zh="我们长期招募圣劳伦斯河走廊沿线经验丰富的海运服务技术人员。">
           We're always looking for experienced marine service technicians across the St. Lawrence corridor.
         </p>
       </div>
-      <a class="btn btn-dark" href="#contact" data-en="See open roles" data-fr="Voir les postes">
+      <a class="btn btn-dark" href="#contact" data-en="See open roles" data-fr="Voir les postes" data-es="Ver puestos disponibles" data-zh="查看职位">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         See open roles
       </a>
@@ -979,10 +1056,10 @@
   <div class="wrap">
     <div class="sec-head sec-head-row">
       <div>
-        <span class="eyebrow" data-en="Get in touch" data-fr="Nous joindre">Get in touch</span>
-        <h2 data-en="Request a quote" data-fr="Demander une soumission">Request a quote</h2>
+        <span class="eyebrow" data-en="Get in touch" data-fr="Nous joindre" data-es="Contáctenos" data-zh="联系我们">Get in touch</span>
+        <h2 data-en="Request a quote" data-fr="Demander une soumission" data-es="Solicitar cotización" data-zh="申请报价">Request a quote</h2>
       </div>
-      <p data-en="Tell us the vessel, the port and the window. We'll get back fast." data-fr="Donnez-nous le navire, le port et la fenêtre. Réponse rapide.">
+      <p data-en="Tell us the vessel, the port and the window. We'll get back fast." data-fr="Donnez-nous le navire, le port et la fenêtre. Réponse rapide." data-es="Díganos el buque, el puerto y la ventana. Respondemos rápido." data-zh="告知我们船名、港口和靠港窗口，我们将迅速回复。">
         Tell us the vessel, the port and the window. We'll get back fast.
       </p>
     </div>
@@ -990,24 +1067,24 @@
     <div class="contact-layout">
       <form id="quoteForm" novalidate>
         <div class="field">
-          <label for="f-name" data-en="Name / company" data-fr="Nom / entreprise">Name / company</label>
+          <label for="f-name" data-en="Name / company" data-fr="Nom / entreprise" data-es="Nombre / empresa" data-zh="姓名 / 公司">Name / company</label>
           <input id="f-name" type="text" autocomplete="organization" placeholder="Acme Shipping Inc.">
         </div>
         <div class="field">
-          <label for="f-email" data-en="Email" data-fr="Courriel">Email</label>
+          <label for="f-email" data-en="Email" data-fr="Courriel" data-es="Correo electrónico" data-zh="电子邮件">Email</label>
           <input id="f-email" type="email" autocomplete="email" placeholder="ops@acmeshipping.com">
         </div>
         <div class="field">
-          <label for="f-vessel" data-en="Vessel &amp; port" data-fr="Navire et port">Vessel &amp; port</label>
+          <label for="f-vessel" data-en="Vessel &amp; port" data-fr="Navire et port" data-es="Buque y puerto" data-zh="船舶及港口">Vessel &amp; port</label>
           <input id="f-vessel" type="text" placeholder="MV Northern Star — Montréal">
         </div>
         <div class="field">
-          <label for="f-msg" data-en="What do you need?" data-fr="Votre besoin ?">What do you need?</label>
+          <label for="f-msg" data-en="What do you need?" data-fr="Votre besoin ?" data-es="¿Qué necesita?" data-zh="您需要什么服务？">What do you need?</label>
           <textarea id="f-msg" rows="4" placeholder="Hold cleaning after grain cargo, ready for inspection..."></textarea>
         </div>
         <button class="btn btn-primary" type="submit" id="send">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          <span data-en="Send request" data-fr="Envoyer la demande">Send request</span>
+          <span data-en="Send request" data-fr="Envoyer la demande" data-es="Enviar solicitud" data-zh="提交申请">Send request</span>
         </button>
       </form>
 
@@ -1017,7 +1094,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           </div>
           <div>
-            <div class="info-key" data-en="Phone" data-fr="Tél.">Phone</div>
+            <div class="info-key" data-en="Phone" data-fr="Tél." data-es="Teléfono" data-zh="电话">Phone</div>
             <div class="info-val"><a href="tel:+15140000000">[PHONE] +1 514 000-0000</a></div>
           </div>
         </div>
@@ -1026,7 +1103,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
-            <div class="info-key" data-en="Email" data-fr="Courriel">Email</div>
+            <div class="info-key" data-en="Email" data-fr="Courriel" data-es="Correo electrónico" data-zh="电子邮件">Email</div>
             <div class="info-val"><a href="mailto:info@laurentidemarine.ca">[EMAIL] info@laurentidemarine.ca</a></div>
           </div>
         </div>
@@ -1035,7 +1112,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <div>
-            <div class="info-key" data-en="Office" data-fr="Bureau">Office</div>
+            <div class="info-key" data-en="Office" data-fr="Bureau" data-es="Oficina" data-zh="办公室">Office</div>
             <div class="info-val">[ADDR] Quebec, QC</div>
           </div>
         </div>
@@ -1044,8 +1121,8 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div>
-            <div class="info-key" data-en="Hours" data-fr="Heures">Hours</div>
-            <div class="info-val" data-en="Dispatch on call, around the clock" data-fr="Répartition sur appel, jour et nuit">Dispatch on call, around the clock</div>
+            <div class="info-key" data-en="Hours" data-fr="Heures" data-es="Horario" data-zh="服务时间">Hours</div>
+            <div class="info-val" data-en="Dispatch on call, around the clock" data-fr="Répartition sur appel, jour et nuit" data-es="Despacho disponible, las 24 horas" data-zh="全天候随叫随到">Dispatch on call, around the clock</div>
           </div>
         </div>
       </div>
@@ -1062,7 +1139,7 @@
       <div class="footer-brand-dot" aria-hidden="true"></div>
       <span>© <span id="yr"></span> Laurentide Marine</span>
     </div>
-    <span data-en="St. Lawrence · Saguenay · Great Lakes · Maritimes" data-fr="Saint-Laurent · Saguenay · Grands Lacs · Maritimes">
+    <span data-en="St. Lawrence · Saguenay · Great Lakes · Maritimes" data-fr="Saint-Laurent · Saguenay · Grands Lacs · Maritimes" data-es="San Lorenzo · Saguenay · Grandes Lagos · Marítimas" data-zh="圣劳伦斯河 · 萨格奈河 · 大湖区 · 大西洋省份">
       St. Lawrence · Saguenay · Great Lakes · Maritimes
     </span>
   </div>
@@ -1094,15 +1171,61 @@
     });
   });
 
-  /* ── bilingual toggle ────────────────────── */
+  /* ── 4-language picker ───────────────────── */
   var lang = 'en';
-  var langBtn = document.getElementById('lang');
-  langBtn.addEventListener('click', function () {
-    lang = lang === 'en' ? 'fr' : 'en';
+  var langLabels = { en: 'EN', fr: 'FR', es: 'ES', zh: '中文' };
+  var langBtn    = document.getElementById('lang');
+  var langLabel  = document.getElementById('langLabel');
+  var langMenu   = document.getElementById('langMenu');
+
+  function applyLang(newLang) {
+    lang = newLang;
     document.documentElement.lang = lang;
-    langBtn.textContent = lang === 'en' ? 'FR' : 'EN';
+    langLabel.textContent = langLabels[lang];
+    document.querySelectorAll('.lang-option').forEach(function (o) {
+      var active = o.getAttribute('data-lang') === lang;
+      o.classList.toggle('active', active);
+      o.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
     document.querySelectorAll('[data-en]').forEach(function (el) {
-      el.innerHTML = el.getAttribute('data-' + lang);
+      var val = el.getAttribute('data-' + lang) || el.getAttribute('data-en');
+      el.innerHTML = val;
+    });
+  }
+
+  langBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = langMenu.classList.toggle('open');
+    langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  document.addEventListener('click', function () {
+    langMenu.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+  });
+
+  langMenu.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      langMenu.classList.remove('open');
+      langBtn.setAttribute('aria-expanded', 'false');
+      langBtn.focus();
+    }
+  });
+
+  document.querySelectorAll('.lang-option').forEach(function (opt) {
+    opt.addEventListener('click', function (e) {
+      e.stopPropagation();
+      applyLang(opt.getAttribute('data-lang'));
+      langMenu.classList.remove('open');
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+    opt.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        applyLang(opt.getAttribute('data-lang'));
+        langMenu.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
+      }
     });
   });
 
@@ -1113,7 +1236,8 @@
     var label = btn.querySelector('span');
     if (!label) return;
     var orig = label.textContent;
-    label.textContent = lang === 'en' ? 'Demo — wire to Supabase or Formspree' : 'Démo — branchez à Supabase ou Formspree';
+    var demoMsgs = { en: 'Demo — wire to Supabase or Formspree', fr: 'Démo — branchez à Supabase ou Formspree', es: 'Demo — conecte a Supabase o Formspree', zh: '演示表单——请连接到 Supabase 或 Formspree' };
+    label.textContent = demoMsgs[lang] || demoMsgs.en;
     btn.disabled = true;
     setTimeout(function () {
       label.textContent = orig;
