@@ -600,6 +600,71 @@
     transform: rotate(45deg);
   }
 
+
+  /* ── Hero entrance animations ───────────────────────────────── */
+  @keyframes kenBurns {
+    from { transform: scale(1.07); }
+    to   { transform: scale(1); }
+  }
+  @keyframes lineReveal {
+    from { transform: translateY(110%); }
+    to   { transform: translateY(0%); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .hero-bg {
+    animation: kenBurns 9s cubic-bezier(.25,.46,.45,.94) forwards;
+    will-change: transform;
+  }
+  .hero-badge {
+    opacity: 0;
+    animation: fadeUp .6s ease forwards;
+    animation-delay: .15s;
+  }
+  /* line-by-line H1 reveal */
+  .h1-line {
+    display: block;
+    overflow: hidden;
+    line-height: 1.1;
+    padding-bottom: .05em;
+  }
+  .h1-inner {
+    display: block;
+    animation: lineReveal .8s cubic-bezier(.16,1,.3,1) both;
+  }
+  .h1-line:nth-child(1) .h1-inner { animation-delay: .35s; }
+  .h1-line:nth-child(2) .h1-inner { animation-delay: .55s; }
+  .h1-line:nth-child(3) .h1-inner { animation-delay: .75s; }
+  .hero .lede {
+    opacity: 0;
+    animation: fadeUp .75s ease forwards;
+    animation-delay: 1s;
+  }
+  .cta-row {
+    opacity: 0;
+    animation: fadeUp .75s ease forwards;
+    animation-delay: 1.2s;
+  }
+  .hero-trust {
+    opacity: 0;
+    animation: fadeUp .75s ease forwards;
+    animation-delay: 1.45s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg, .hero-badge, .h1-inner, .hero .lede, .cta-row, .hero-trust {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
   /* ── Responsive ──────────────────────────────────────────── */
   @media (max-width: 960px) {
     .service-grid { grid-template-columns: 1fr 1fr; }
@@ -701,8 +766,13 @@
       <div class="hero-badge-dot"></div>
       <span data-en="Cargo-hold specialists across 6 St. Lawrence ports" data-fr="Spécialistes des cales — 6 ports du Saint-Laurent">Cargo-hold specialists across 6 St. Lawrence ports</span>
     </div>
-    <h1 data-en="Every hold cleaned.<br>Every vessel<br>back on <em>schedule.</em>" data-fr="Chaque cale nettoyée.<br>Chaque navire<br>reparti <em>à temps.</em>">
-      Every hold cleaned.<br>Every vessel<br>back on <em>schedule.</em>
+    <h1
+      data-en='<span class="h1-line"><span class="h1-inner">From the iron ports</span></span><span class="h1-line"><span class="h1-inner">to the grain docks —</span></span><span class="h1-line"><span class="h1-inner">we keep you <em>moving.</em></span></span>'
+      data-fr='<span class="h1-line"><span class="h1-inner">Des ports de minerai</span></span><span class="h1-line"><span class="h1-inner">aux quais à grain —</span></span><span class="h1-line"><span class="h1-inner">on vous garde <em>en marche.</em></span></span>'
+    >
+      <span class="h1-line"><span class="h1-inner">From the iron ports</span></span>
+      <span class="h1-line"><span class="h1-inner">to the grain docks —</span></span>
+      <span class="h1-line"><span class="h1-inner">we keep you <em>moving.</em></span></span>
     </h1>
     <p class="lede" data-en="From bulk carriers to tankers — hold cleaning, tank and engine-room work, wash-water recovery, de-icing and hold heating. Wherever your vessel docks on the St. Lawrence." data-fr="Des vraquiers aux pétroliers — nettoyage de cales, citernes et salle des machines, récupération des eaux, déglaçage et chauffage. Partout où votre navire accoste sur le Saint-Laurent.">
       From bulk carriers to tankers — hold cleaning, tank and engine-room work, wash-water recovery, de-icing and hold heating. Wherever your vessel docks on the St. Lawrence.
