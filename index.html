@@ -20,6 +20,7 @@
 <title>Port Quote — St. Lawrence cargo-hold services</title>
 <meta name="description" content="Port Quote: cargo-hold cleaning, tank and engine-room work, wash-water recovery, de-icing and hold heating across 18 St. Lawrence ports.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -792,6 +793,110 @@
     color: #F59E0B;
     margin-top: 3px;
   }
+
+  /* ── Form feedback ──────────────────────────────────────────── */
+  .form-msg {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-size: .95rem;
+    font-weight: 500;
+    display: none;
+  }
+  .form-msg.success {
+    background: rgba(34,197,94,.1);
+    border: 1px solid rgba(34,197,94,.3);
+    color: #4ade80;
+    display: block;
+  }
+  .form-msg.error {
+    background: rgba(239,68,68,.1);
+    border: 1px solid rgba(239,68,68,.3);
+    color: #f87171;
+    display: block;
+  }
+  .btn:disabled { opacity: .6; cursor: not-allowed; transform: none !important; }
+
+  /* ── Apply section ──────────────────────────────────────────── */
+  .apply { background: var(--hull-2); border-top: 1px solid var(--line); }
+  .apply-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 24px;
+  }
+  .field select {
+    width: 100%;
+    background: var(--hull-2);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius-sm);
+    color: var(--paper);
+    padding: 12px 16px;
+    font: inherit;
+    font-size: .97rem;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    transition: border-color .18s, box-shadow .18s;
+  }
+  .field select:focus {
+    outline: none;
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(245,158,11,.15);
+  }
+  .field select option { background: #0D1C2B; }
+
+  /* File drop zone */
+  .file-drop {
+    position: relative;
+    border: 1.5px dashed var(--line-2);
+    border-radius: var(--radius-sm);
+    padding: 28px 20px;
+    text-align: center;
+    transition: border-color .2s, background .2s;
+    cursor: pointer;
+  }
+  .file-drop:hover, .file-drop.drag-over {
+    border-color: var(--amber);
+    background: rgba(245,158,11,.05);
+  }
+  .file-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+  .file-drop-ui svg { color: var(--steel); margin-bottom: 10px; }
+  .file-drop-ui span { display: block; color: var(--steel); font-size: .93rem; }
+  .file-drop-ui strong { color: var(--amber); }
+  .file-hint { font-size: .78rem !important; margin-top: 4px; }
+  .file-selected {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #4ade80;
+    font-weight: 600;
+    font-size: .93rem;
+  }
+  .file-selected svg { flex: none; }
+  .file-remove {
+    background: none;
+    border: none;
+    color: var(--steel);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    padding: 0 4px;
+    transition: color .15s;
+  }
+  .file-remove:hover { color: #f87171; }
+  @media (max-width: 680px) {
+    .apply-grid { grid-template-columns: 1fr; }
+  }
   /* ── Responsive ──────────────────────────────────────────── */
   @media (max-width: 960px) {
     .service-grid { grid-template-columns: 1fr 1fr; }
@@ -1125,11 +1230,81 @@
           We're always looking for experienced marine service technicians across the St. Lawrence corridor.
         </p>
       </div>
-      <a class="btn btn-dark" href="#contact" data-en="See open roles" data-fr="Voir les postes" data-es="Ver puestos disponibles" data-zh="查看职位">
+      <a class="btn btn-dark" href="#apply" data-en="See open roles" data-fr="Voir les postes" data-es="Ver puestos disponibles" data-zh="查看职位">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         See open roles
       </a>
     </div>
+  </div>
+</section>
+
+
+<!-- ── APPLY ────────────────────────────────────────── -->
+<section id="apply" class="apply">
+  <div class="wrap">
+    <div class="sec-head sec-head-row">
+      <div>
+        <span class="eyebrow" data-en="Join the crew" data-fr="Rejoindre l'équipe" data-es="Únase al equipo" data-zh="加入团队">Join the crew</span>
+        <h2 data-en="Apply now" data-fr="Postulez maintenant" data-es="Aplique ahora" data-zh="立即申请">Apply now</h2>
+      </div>
+      <p data-en="Send us your details and resume — we'll be in touch about openings across the corridor." data-fr="Envoyez-nous vos coordonnées et votre CV — nous vous contacterons pour les postes disponibles sur le corridor." data-es="Envíenos sus datos y currículum — nos pondremos en contacto sobre las vacantes en el corredor." data-zh="请发送您的信息和简历——我们将就走廊沿线职位与您联系。">
+        Send us your details and resume — we'll be in touch about openings across the corridor.
+      </p>
+    </div>
+    <form id="applyForm" novalidate>
+      <div class="apply-grid">
+        <div class="field">
+          <label for="a-name" data-en="Full name" data-fr="Nom complet" data-es="Nombre completo" data-zh="全名">Full name</label>
+          <input id="a-name" type="text" autocomplete="name" placeholder="Jean Tremblay">
+        </div>
+        <div class="field">
+          <label for="a-email" data-en="Email" data-fr="Courriel" data-es="Correo electrónico" data-zh="电子邮件">Email</label>
+          <input id="a-email" type="email" autocomplete="email" placeholder="jean@example.com">
+        </div>
+        <div class="field">
+          <label for="a-phone" data-en="Phone" data-fr="Téléphone" data-es="Teléfono" data-zh="电话">Phone</label>
+          <input id="a-phone" type="tel" autocomplete="tel" placeholder="+1 514 000-0000">
+        </div>
+        <div class="field">
+          <label for="a-position" data-en="Position of interest" data-fr="Poste souhaité" data-es="Puesto de interés" data-zh="应聘职位">Position of interest</label>
+          <select id="a-position">
+            <option value="" data-en="Select a role…" data-fr="Choisir un poste…" data-es="Seleccionar un puesto…" data-zh="选择职位…">Select a role…</option>
+            <option value="Hold Cleaning Technician">Hold Cleaning Technician</option>
+            <option value="Tank & Engine Room Specialist">Tank &amp; Engine Room Specialist</option>
+            <option value="Equipment Cleaning Operator">Equipment Cleaning Operator</option>
+            <option value="Wash-Water Recovery Technician">Wash-Water Recovery Technician</option>
+            <option value="De-icing Operator">De-icing Operator</option>
+            <option value="Hold Heating Technician">Hold Heating Technician</option>
+            <option value="General Marine Services">General Marine Services</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" style="margin-top:4px">
+        <label for="a-msg" data-en="About you" data-fr="À votre sujet" data-es="Sobre usted" data-zh="个人简介">About you</label>
+        <textarea id="a-msg" rows="3" placeholder="Experience, certifications, availability…"></textarea>
+      </div>
+      <div class="field">
+        <label data-en="Resume (PDF, DOC, DOCX — max 5 MB)" data-fr="CV (PDF, DOC, DOCX — max 5 Mo)" data-es="Currículum (PDF, DOC, DOCX — máx 5 MB)" data-zh="简历（PDF、DOC、DOCX，最大5MB）">Resume (PDF, DOC, DOCX — max 5 MB)</label>
+        <div class="file-drop" id="fileDrop">
+          <input type="file" id="a-resume" accept=".pdf,.doc,.docx" class="file-input" aria-label="Upload resume">
+          <div class="file-drop-ui" id="fileDropUi">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span data-en="Drop your resume here or <strong>browse</strong>" data-fr="Déposez votre CV ici ou <strong>parcourir</strong>" data-es="Suelte su CV aquí o <strong>explorar</strong>" data-zh="拖放简历到此处或<strong>浏览</strong>">Drop your resume here or <strong>browse</strong></span>
+            <span class="file-hint">PDF · DOC · DOCX · max 5 MB</span>
+          </div>
+          <div class="file-selected" id="fileSelected">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="fileName"></span>
+            <button type="button" class="file-remove" id="fileRemove" aria-label="Remove file">×</button>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit" id="applyBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <span data-en="Submit application" data-fr="Envoyer ma candidature" data-es="Enviar solicitud" data-zh="提交申请">Submit application</span>
+      </button>
+      <div id="applyMsg" class="form-msg" role="alert"></div>
+    </form>
   </div>
 </section>
 
@@ -1168,6 +1343,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           <span data-en="Send request" data-fr="Envoyer la demande" data-es="Enviar solicitud" data-zh="提交申请">Send request</span>
         </button>
+        <div id="quoteMsg" class="form-msg" role="alert"></div>
       </form>
 
       <div class="contact-info">
@@ -1309,20 +1485,130 @@
     });
   });
 
-  /* ── contact form placeholder ────────────── */
+  /* ── Supabase client ─────────────────────── */
+  var db = supabase.createClient(
+    'https://azkefbieolmftakcizsv.supabase.co',
+    'sb_publishable_0qhWwD4QEKfwAUepnYWeDw_vmWlYb0l'
+  );
+
+  function showMsg(id, type, text) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.className = 'form-msg ' + type;
+    el.textContent = text;
+    el.style.display = 'block';
+  }
+
+  /* ── Quote request form ───────────────────── */
   document.getElementById('quoteForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    var btn = document.getElementById('send');
-    var label = btn.querySelector('span');
-    if (!label) return;
-    var orig = label.textContent;
-    var demoMsgs = { en: 'Demo — wire to Supabase or Formspree', fr: 'Démo — branchez à Supabase ou Formspree', es: 'Demo — conecte a Supabase o Formspree', zh: '演示表单——请连接到 Supabase 或 Formspree' };
-    label.textContent = demoMsgs[lang] || demoMsgs.en;
+    var btn  = document.getElementById('send');
+    var lbl  = btn.querySelector('span');
+    var orig = lbl ? lbl.textContent : '';
     btn.disabled = true;
-    setTimeout(function () {
-      label.textContent = orig;
+    if (lbl) lbl.textContent = '…';
+
+    db.from('quote_requests').insert({
+      name:        document.getElementById('f-name').value.trim(),
+      email:       document.getElementById('f-email').value.trim(),
+      vessel_port: document.getElementById('f-vessel').value.trim(),
+      message:     document.getElementById('f-msg').value.trim()
+    }).then(function(res) {
       btn.disabled = false;
-    }, 3000);
+      if (lbl) lbl.textContent = orig;
+      if (res.error) {
+        showMsg('quoteMsg', 'error', 'Something went wrong — please try again or call us directly.');
+      } else {
+        showMsg('quoteMsg', 'success', 'Request received! We\'ll get back to you shortly.');
+        document.getElementById('quoteForm').reset();
+      }
+    });
+  });
+
+  /* ── Job application form ─────────────────── */
+  var selectedFile = null;
+  var fileInput    = document.getElementById('a-resume');
+  var fileDrop     = document.getElementById('fileDrop');
+  var fileDropUi   = document.getElementById('fileDropUi');
+  var fileSelected = document.getElementById('fileSelected');
+  var fileNameEl   = document.getElementById('fileName');
+
+  function setFile(file) {
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      showMsg('applyMsg', 'error', 'File too large — max 5 MB.');
+      return;
+    }
+    selectedFile = file;
+    if (fileNameEl) fileNameEl.textContent = file.name;
+    if (fileDropUi) fileDropUi.style.display = 'none';
+    if (fileSelected) fileSelected.style.display = 'flex';
+  }
+
+  if (fileInput) fileInput.addEventListener('change', function () { setFile(fileInput.files[0]); });
+
+  if (fileDrop) {
+    fileDrop.addEventListener('dragover',  function(e) { e.preventDefault(); fileDrop.classList.add('drag-over'); });
+    fileDrop.addEventListener('dragleave', function()  { fileDrop.classList.remove('drag-over'); });
+    fileDrop.addEventListener('drop',      function(e) { e.preventDefault(); fileDrop.classList.remove('drag-over'); setFile(e.dataTransfer.files[0]); });
+  }
+
+  var fileRemove = document.getElementById('fileRemove');
+  if (fileRemove) fileRemove.addEventListener('click', function(e) {
+    e.stopPropagation();
+    selectedFile = null;
+    if (fileInput) fileInput.value = '';
+    if (fileDropUi) fileDropUi.style.display = '';
+    if (fileSelected) fileSelected.style.display = 'none';
+  });
+
+  document.getElementById('applyForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn  = document.getElementById('applyBtn');
+    var lbl  = btn.querySelector('span');
+    var orig = lbl ? lbl.textContent : '';
+    btn.disabled = true;
+    if (lbl) lbl.textContent = '…';
+
+    var row = {
+      name:     document.getElementById('a-name').value.trim(),
+      email:    document.getElementById('a-email').value.trim(),
+      phone:    document.getElementById('a-phone').value.trim(),
+      position: document.getElementById('a-position').value,
+      message:  document.getElementById('a-msg').value.trim()
+    };
+
+    function insertRow(resumeUrl) {
+      if (resumeUrl) row.resume_url = resumeUrl;
+      db.from('job_applications').insert(row).then(function(res) {
+        btn.disabled = false;
+        if (lbl) lbl.textContent = orig;
+        if (res.error) {
+          showMsg('applyMsg', 'error', 'Something went wrong — please try again or email us at ops@portquote.com');
+        } else {
+          showMsg('applyMsg', 'success', 'Application received! We\'ll be in touch soon.');
+          document.getElementById('applyForm').reset();
+          selectedFile = null;
+          if (fileDropUi) fileDropUi.style.display = '';
+          if (fileSelected) fileSelected.style.display = 'none';
+        }
+      });
+    }
+
+    if (selectedFile) {
+      var fname = Date.now() + '_' + selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      db.storage.from('resumes').upload(fname, selectedFile).then(function(res) {
+        if (res.error) {
+          btn.disabled = false;
+          if (lbl) lbl.textContent = orig;
+          showMsg('applyMsg', 'error', 'Resume upload failed — please try again.');
+        } else {
+          insertRow(res.data.path);
+        }
+      });
+    } else {
+      insertRow(null);
+    }
   });
 
   /* ── scroll reveal ───────────────────────── */
