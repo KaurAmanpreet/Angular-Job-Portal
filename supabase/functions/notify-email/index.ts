@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
-const NOTIFY_TO = "ops@portquote.com";
+const NOTIFY_TO = "amanpreet@portquote.com";
 const FROM = "Port Quote Notifications <notifications@portquote.com>";
 
 serve(async (req) => {
