@@ -82,7 +82,7 @@ serve(async (req) => {
     body: JSON.stringify({
       from: FROM,
       to: [NOTIFY_TO],
-      reply_to: record.email as string,
+      ...(record.email ? { reply_to: record.email as string } : {}),
       subject,
       html,
     }),
