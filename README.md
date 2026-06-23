@@ -1,27 +1,51 @@
-# FindJobs
+# Aqua Québec — Pool company website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+A professional, bilingual (FR/EN) single-page marketing site for **Aqua Québec**,
+a Québec-based pool construction and maintenance company.
 
-## Development server
+Built from scratch as a static **HTML / CSS / JavaScript** site — no framework, no build step.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Structure
 
-## Code scaffolding
+```
+index.html              Single-page site (Hero, Services, About, Gallery, Contact)
+assets/
+  css/styles.css        Design system + responsive layout
+  js/i18n.js            Bilingual FR/EN dictionary + language switcher
+  js/main.js            Sticky nav, mobile menu, scroll reveals, form validation
+  img/                  Photography
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- **Bilingual FR/EN** — instant language toggle, defaults to French, remembers the choice (`localStorage`)
+- **Single-page scroll** with sticky header and smooth-scroll anchors
+- **Responsive** down to mobile, with an accessible slide-in menu
+- Aqua/turquoise design system, scroll-reveal animations, accessible focus states
+- Contact form with front-end validation (no backend wired yet)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Run locally
 
-## Running unit tests
+It's pure static files — open `index.html` directly, or serve the folder:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
 
-## Running end-to-end tests
+## Deploy (Firebase Hosting)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+`firebase.json` is configured to serve the repo root:
 
-## Further help
+```bash
+firebase deploy --only hosting
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Editing content
+
+- **Text** lives in `assets/js/i18n.js` (one `fr` and one `en` block, matching `data-i18n` keys).
+- **Images** live in `assets/img/`. Replace the files (keep the names) to swap photos.
+- **Colors/fonts** are CSS variables at the top of `assets/css/styles.css`.
+
+> Phone, email and stats in the contact section are placeholders — update them with the
+> real business details.
