@@ -77,7 +77,20 @@
         note.classList.remove("success");
         return;
       }
-      // No backend wired yet — show success and reset.
+      // Functional fallback with no backend: open the visitor's email client
+      // pre-filled with their request. Replace with a real form endpoint
+      // (Formspree, Firebase, etc.) when available.
+      const get = id => (document.getElementById(id).value || "").trim();
+      const subject = `Demande de soumission — ${get("service")}`;
+      const body =
+        `Nom: ${get("name")}\n` +
+        `Courriel: ${get("email")}\n` +
+        `Téléphone: ${get("phone")}\n` +
+        `Type de projet: ${get("service")}\n\n` +
+        `${get("message")}`;
+      window.location.href =
+        `mailto:info@aquaquebec.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
       note.textContent = dict.form_success;
       note.classList.add("success");
       form.reset();
