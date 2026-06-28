@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Singh Restaurant am Park</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9a84c;--gold-lt:#e4c97e;--gold-dk:#a07830;
+  --dark:#0d0b09;--dark-2:#161310;--dark-3:#1e1a16;--dark-4:#2a241e;
+  --cream:#f5f0e8;--cream-dk:#e8e0d0;--text:#c8bfb0;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:system-ui,-apple-system,sans-serif;
+  --pad:clamp(70px,9vw,130px);--r:4px;--tr:.4s cubic-bezier(.25,.46,.45,.94)
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--dark);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+
+/* utils */
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.sec{padding:var(--pad) 0}
+.tc{text-align:center}
+.eyebrow{display:block;font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.h2{font-family:var(--serif);font-size:clamp(2rem,5vw,3.6rem);font-weight:400;color:var(--cream);line-height:1.12;margin-bottom:24px}
+.h2 em{font-style:italic;color:var(--gold-lt)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border:1px solid transparent;border-radius:var(--r);font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all var(--tr);white-space:nowrap}
+.btn-gold{background:var(--gold);color:var(--dark);border-color:var(--gold)}.btn-gold:hover{background:var(--gold-lt)}
+.btn-ghost{background:transparent;color:var(--cream);border-color:rgba(255,255,255,.3)}.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-outline{background:transparent;color:var(--gold);border-color:var(--gold)}.btn-outline:hover{background:var(--gold);color:var(--dark)}
+.btn-full{width:100%;justify-content:center}
+.btn-sm{padding:9px 20px;font-size:.72rem}
+
+/* reveal */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rev.on{opacity:1;transform:translateY(0)}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;transition:background var(--tr),padding var(--tr)}
+#nav.sc{background:rgba(13,11,9,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:11px 0;border-bottom:1px solid rgba(201,168,76,.15)}
+.nav-in{max-width:1160px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.logo{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-size:1.35rem;color:var(--cream)}.logo span:first-child{color:var(--gold);font-size:.95rem}
+.nl{display:flex;align-items:center;gap:32px}
+.nl a{font-size:.75rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--text);transition:color var(--tr)}.nl a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold) !important;color:var(--dark) !important;padding:9px 20px;border-radius:var(--r);font-weight:500 !important}
+.nav-cta:hover{background:var(--gold-lt) !important}
+.bg-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.bg-btn span{display:block;width:24px;height:1.5px;background:var(--cream);transition:all .3s}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 110%,rgba(201,168,76,.12) 0%,transparent 60%),linear-gradient(160deg,#1a0f05 0%,#0d0b09 50%,#0a0806 100%)}
+.hpat{position:absolute;inset:0;opacity:.04;background-image:repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%),repeating-linear-gradient(-45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%);background-size:30px 30px}
+.hcon{position:relative;z-index:2;text-align:center;max-width:780px;padding:130px 24px 190px}
+.h-ey{display:block;font-size:.68rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.h-t{font-family:var(--serif);font-size:clamp(2.8rem,8vw,6rem);font-weight:400;color:var(--cream);line-height:1.05;margin-bottom:24px}.h-t em{color:var(--gold-lt);font-style:italic}
+.h-s{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--text);max-width:500px;margin:0 auto 36px;font-weight:300}
+.h-acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.h-scr{position:absolute;bottom:185px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;z-index:2}
+.scrl{width:1px;height:55px;background:linear-gradient(to bottom,transparent,var(--gold));animation:sp 2s ease-in-out infinite}
+.h-scr span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);writing-mode:vertical-rl}
+@keyframes sp{0%,100%{opacity:.4;transform:scaleY(.8)}50%{opacity:1;transform:scaleY(1)}}
+.h-hrs{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:36px;padding:22px 24px;background:rgba(201,168,76,.08);border-top:1px solid rgba(201,168,76,.2);z-index:2;backdrop-filter:blur(8px);flex-wrap:wrap}
+.hr-it{text-align:center}.hr-l{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}.hr-v{font-family:var(--serif);font-size:1.05rem;color:var(--cream)}
+.hr-d{width:1px;height:38px;background:rgba(201,168,76,.3)}
+
+/* ── MARQUEE ── */
+.mq{background:var(--gold);overflow:hidden;padding:13px 0}
+.mq-t{display:flex;width:max-content;animation:mq 30s linear infinite}
+.mq-t span{font-family:var(--serif);font-size:.95rem;color:var(--dark);padding:0 18px;white-space:nowrap}
+.mq-t .sep{color:rgba(13,11,9,.4);padding:0}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── ABOUT ── */
+.about{background:var(--dark-2)}
+.ab-g{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.ab-vis{position:relative}.ab-fr{position:relative;height:500px}
+.ab-i{position:absolute;border-radius:var(--r);overflow:hidden}
+.ab-i1{width:74%;height:69%;top:0;left:0}.ab-i2{width:54%;height:54%;bottom:0;right:0;border:4px solid var(--dark-2)}
+.ip{width:100%;height:100%}.ip1{background:linear-gradient(135deg,#3d1f0a,#6b3515,#2a1205)}.ip2{background:linear-gradient(135deg,#1a2a1a,#2d4a2d,#0f1f0f)}
+.ab-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:96px;height:96px;background:var(--gold);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;border:4px solid var(--dark-2)}
+.bn{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--dark);line-height:1}.bt{font-size:.52rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--dark);text-align:center;line-height:1.2}
+.ab-d{font-size:.92rem;font-weight:300;color:var(--text);line-height:1.8;margin-bottom:18px}
+.ab-st{display:flex;gap:28px;margin:32px 0 36px;padding:26px 0;border-top:1px solid rgba(201,168,76,.15);border-bottom:1px solid rgba(201,168,76,.15)}
+.st{text-align:center}.sn{display:block;font-family:var(--serif);font-size:1.8rem;color:var(--gold);font-weight:400}.sl{font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text)}
+
+/* ── MENU ── */
+.menu-s{background:var(--dark)}
+.tabs{display:flex;justify-content:center;gap:4px;margin:44px auto 52px;background:var(--dark-3);padding:5px;border-radius:6px;max-width:580px}
+.tab{flex:1;padding:11px 14px;background:none;border:none;border-radius:var(--r);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text);cursor:pointer;transition:all var(--tr)}
+.tab.act{background:var(--gold);color:var(--dark)}.tab:hover:not(.act){color:var(--gold)}
+.mpanel{display:none}.mpanel.act{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:2px}
+.mc{background:var(--dark-3);padding:26px;border:1px solid rgba(201,168,76,.07);transition:border-color var(--tr),background var(--tr);position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--gold);transition:height .4s}
+.mc:hover::before{height:100%}.mc:hover{background:var(--dark-4);border-color:rgba(201,168,76,.2)}
+.mc.feat{background:linear-gradient(135deg,var(--dark-4),rgba(42,36,30,.8));border-color:rgba(201,168,76,.2)}
+.mch{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.dn{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--cream);margin-bottom:7px}
+.dd{font-size:.83rem;color:var(--text);font-weight:300;line-height:1.6;margin-bottom:11px}
+.dt{display:inline-block;font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:3px 9px;border-radius:20px}
+.dp{font-family:var(--serif);font-size:1.25rem;color:var(--gold);white-space:nowrap;flex-shrink:0}
+.mfoot{text-align:center;margin-top:50px;padding-top:44px;border-top:1px solid rgba(201,168,76,.1)}
+.mfoot p{font-size:.83rem;color:var(--text);margin-bottom:18px}
+
+/* ── EXP STRIP ── */
+.exp{background:var(--dark-3);border-top:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12);display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap}
+.ei{flex:1;min-width:190px;text-align:center;padding:44px 28px}
+.ei-ic{font-size:1.9rem;margin-bottom:14px}
+.ei h3{font-family:var(--serif);font-size:1.15rem;color:var(--cream);font-weight:400;margin-bottom:7px}
+.ei p{font-size:.83rem;color:var(--text);font-weight:300}
+.ed{width:1px;background:rgba(201,168,76,.15);flex-shrink:0;align-self:stretch}
+
+/* ── GALLERY ── */
+.gal-s{background:var(--dark-2);padding-bottom:0}
+.gal-s .wrap{padding-bottom:52px}
+.gg{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:230px 230px;gap:3px}
+.gi{overflow:hidden}.gw{grid-column:span 3}.gi:not(.gw){grid-column:span 2}
+.gp{width:100%;height:100%;display:flex;align-items:flex-end;padding:18px;transition:transform .5s ease}
+.gi:hover .gp{transform:scale(1.04)}
+.gp span{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75);background:rgba(0,0,0,.5);padding:5px 12px;border-radius:2px}
+.gp1{background:linear-gradient(135deg,#1a0f05,#3d2010,#1a0f05)}
+.gp2{background:linear-gradient(135deg,#2d1505,#6b3010,#2d1505)}
+.gp3{background:linear-gradient(135deg,#0a1a0a,#1e4a1e,#0a1a0a)}
+.gp4{background:linear-gradient(135deg,#200a0a,#4a1010,#200a0a)}
+.gp5{background:linear-gradient(135deg,#0d1520,#1a3050,#0d1520)}
+
+/* ── RESERVE ── */
+.res-s{background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.08) 0%,transparent 60%),var(--dark);padding:var(--pad) 0}
+.res-in{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.res-desc{font-size:.92rem;color:var(--text);font-weight:300;line-height:1.8;margin-bottom:32px}
+.ri{margin-bottom:36px}
+.ri-it{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
+.ri-ic{font-size:1rem;flex-shrink:0;margin-top:2px}
+.ri-it strong{display:block;font-size:.67rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.ri-it span{font-size:.88rem;color:var(--text)}
+.oh h4{font-family:var(--serif);font-size:.95rem;color:var(--cream);font-weight:400;margin-bottom:14px}
+.oh table{width:100%;border-collapse:collapse}
+.oh td{padding:9px 0;font-size:.82rem;color:var(--text);border-bottom:1px solid rgba(201,168,76,.08)}
+.oh td:last-child{text-align:right}.oh .cl td{color:rgba(184,50,50,.7)}
+.rfw{position:relative}
+.rf,.fs{background:var(--dark-3);border:1px solid rgba(201,168,76,.12);border-radius:6px;padding:36px}
+.rf h3{font-family:var(--serif);font-size:1.5rem;color:var(--cream);font-weight:400;margin-bottom:28px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.67rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;background:var(--dark-4);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);font-family:var(--sans);font-size:.88rem;color:var(--cream);transition:border-color var(--tr);outline:none;appearance:none}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(200,191,176,.35)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg select option{background:var(--dark-3)}
+.gc{display:flex;align-items:center;gap:18px;background:var(--dark-4);border:1px solid rgba(201,168,76,.15);border-radius:var(--r);padding:9px 14px;width:fit-content}
+.cb{background:none;border:1px solid rgba(201,168,76,.3);color:var(--gold);width:30px;height:30px;border-radius:50%;font-size:1.1rem;cursor:pointer;transition:all var(--tr);display:flex;align-items:center;justify-content:center}
+.cb:hover{background:var(--gold);color:var(--dark)}
+#gc-disp{font-family:var(--serif);font-size:1.3rem;color:var(--cream);min-width:22px;text-align:center}
+.fn{font-size:.72rem;color:var(--text);text-align:center;margin-top:14px;opacity:.7}
+.fs{display:none;text-align:center;padding:56px 36px}.fs.on{display:block}
+.fs-ic{font-size:2.2rem;color:var(--gold);margin-bottom:20px}
+.fs h3{font-family:var(--serif);font-size:1.8rem;color:var(--cream);font-weight:400;margin-bottom:14px}
+.fs p{color:var(--text);font-size:.92rem}
+
+/* ── MAP ── */
+.map-s{height:360px;position:relative}
+.mpl{width:100%;height:100%;background:var(--dark-3);position:relative;overflow:hidden}
+.mg{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.06) 1px,transparent 1px);background-size:46px 46px}
+.moc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--dark-2);border:1px solid rgba(201,168,76,.25);padding:26px 34px;text-align:center;border-radius:6px;z-index:2}
+.moc h4{font-family:var(--serif);font-size:1.25rem;color:var(--cream);font-weight:400;margin-bottom:7px}
+.moc p{font-size:.83rem;color:var(--text);margin-bottom:18px}
+
+/* ── FOOTER ── */
+footer{background:var(--dark-2);border-top:1px solid rgba(201,168,76,.12);padding:60px 0 0}
+.fi{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(201,168,76,.08)}
+.fb .logo{font-size:1.25rem;margin-bottom:18px;display:inline-flex}
+.fb>p{font-size:.83rem;color:var(--text);line-height:1.8;margin-bottom:22px}
+.sl-row{display:flex;gap:11px}
+.sl-a{width:36px;height:36px;border:1px solid rgba(201,168,76,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text);transition:all var(--tr);font-size:.9rem}
+.sl-a:hover{border-color:var(--gold);color:var(--gold)}
+.fc h5{font-size:.67rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.fc ul li{font-size:.83rem;color:var(--text);margin-bottom:11px;font-weight:300}
+.fc ul li a{transition:color var(--tr)}.fc ul li a:hover{color:var(--gold)}
+.fc .cn{color:rgba(184,50,50,.55);font-size:.77rem}
+.fb-bot{text-align:center;padding:18px 24px}
+.fb-bot p{font-size:.72rem;color:rgba(200,191,176,.4)}
+.fb-bot a{color:rgba(200,191,176,.45);transition:color var(--tr)}.fb-bot a:hover{color:var(--gold)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .ab-g{grid-template-columns:1fr;gap:52px}.ab-vis{max-width:500px;margin:0 auto}
+  .res-in{grid-template-columns:1fr;gap:52px}
+  .fi{grid-template-columns:1fr 1fr;gap:36px}.fb{grid-column:span 2}
+}
+@media(max-width:768px){
+  .nl{position:fixed;top:0;right:-100%;width:272px;height:100vh;background:var(--dark-2);border-left:1px solid rgba(201,168,76,.15);flex-direction:column;justify-content:center;gap:22px;padding:40px 28px;transition:right .4s ease;z-index:99}
+  .nl.open{right:0}.nl a{font-size:.95rem}
+  .bg-btn{display:flex;z-index:100}
+  .h-acts{flex-direction:column;align-items:center}
+  .tabs{flex-direction:column;max-width:100%}
+  .mpanel.act{grid-template-columns:1fr}
+  .exp{flex-direction:column}.ed{width:100%;height:1px}
+  .gg{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gi,.gw{grid-column:span 1;height:160px}
+  .fr{grid-template-columns:1fr}
+  .fi{grid-template-columns:1fr}.fb{grid-column:span 1}
+  .ab-fr{height:360px}
+}
+@media(max-width:480px){
+  .rf,.fs{padding:24px 18px}.ab-st{gap:18px}
+  .res-in{gap:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#home" class="logo"><span>✦</span><span>Singh am Park</span></a>
+    <button class="bg-btn" id="bgb" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <ul class="nl" id="nl">
+      <li><a href="#about">Über uns</a></li>
+      <li><a href="#menu">Speisekarte</a></li>
+      <li><a href="#gallery">Galerie</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+      <li><a href="#reserve" class="nav-cta">Reservieren</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hbg"></div><div class="hpat"></div>
+  <div class="hcon">
+    <span class="h-ey rev">Nordindische Küche · seit 2012</span>
+    <h1 class="h-t rev">Wo Tradition<br/><em>auf Leidenschaft</em><br/>trifft</h1>
+    <p class="h-s rev">Authentische Gewürze. Feinste Zutaten. Eine unvergessliche Atmosphäre direkt am Park.</p>
+    <div class="h-acts rev">
+      <a href="#reserve" class="btn btn-gold">Tisch reservieren</a>
+      <a href="#menu" class="btn btn-ghost">Speisekarte</a>
+    </div>
+  </div>
+  <div class="h-scr"><div class="scrl"></div><span>Scrollen</span></div>
+  <div class="h-hrs">
+    <div class="hr-it"><span class="hr-l">Mo – Fr</span><span class="hr-v">12:00 – 22:30</span></div>
+    <div class="hr-d"></div>
+    <div class="hr-it"><span class="hr-l">Sa – So</span><span class="hr-v">12:00 – 23:00</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-t">
+    <span>Butter Chicken</span><span class="sep">✦</span><span>Lamb Rogan Josh</span><span class="sep">✦</span><span>Garlic Naan</span><span class="sep">✦</span><span>Mango Lassi</span><span class="sep">✦</span><span>Dal Makhani</span><span class="sep">✦</span><span>Tandoori Mixed Grill</span><span class="sep">✦</span><span>Palak Paneer</span><span class="sep">✦</span><span>Chicken Tikka Masala</span><span class="sep">✦</span>
+    <span>Butter Chicken</span><span class="sep">✦</span><span>Lamb Rogan Josh</span><span class="sep">✦</span><span>Garlic Naan</span><span class="sep">✦</span><span>Mango Lassi</span><span class="sep">✦</span><span>Dal Makhani</span><span class="sep">✦</span><span>Tandoori Mixed Grill</span><span class="sep">✦</span><span>Palak Paneer</span><span class="sep">✦</span><span>Chicken Tikka Masala</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="about sec">
+  <div class="wrap">
+    <div class="ab-g">
+      <div class="ab-vis rev">
+        <div class="ab-fr">
+          <div class="ab-i ab-i1"><div class="ip ip1"></div></div>
+          <div class="ab-i ab-i2"><div class="ip ip2"></div></div>
+          <div class="ab-badge"><span class="bn">12+</span><span class="bt">Jahre<br/>Passion</span></div>
+        </div>
+      </div>
+      <div class="ab-tx">
+        <span class="eyebrow rev">Unsere Geschichte</span>
+        <h2 class="h2 rev">Eine Reise durch<br/><em>die Aromen Indiens</em></h2>
+        <p class="ab-d rev">Seit 2012 bringen wir die lebendige Küche Nordindiens nach Deutschland. Unser Küchenchef Rajiv Singh reiste durch Punjab, Kashmir und Rajasthan, um die authentischsten Rezepte zu sammeln und mit deutschen Zutaten höchster Qualität zu verbinden.</p>
+        <p class="ab-d rev">Jedes Gericht wird mit frisch gemahlenen Gewürzen und traditionellen Techniken zubereitet — im Tandoor-Ofen, im Tontopf oder im Kupferkessel, genau wie in Indien.</p>
+        <div class="ab-st rev">
+          <div class="st"><span class="sn">40+</span><span class="sl">Gerichte</span></div>
+          <div class="st"><span class="sn">25+</span><span class="sl">Gewürze</span></div>
+          <div class="st"><span class="sn">★ 4.8</span><span class="sl">Google</span></div>
+        </div>
+        <a href="#contact" class="btn btn-gold rev">Uns besuchen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="menu-s sec">
+  <div class="wrap">
+    <span class="eyebrow tc rev">Speisekarte</span>
+    <h2 class="h2 tc rev">Entdecken Sie unsere<br/><em>Signature-Gerichte</em></h2>
+    <div class="tabs rev">
+      <button class="tab act" data-tab="st">Vorspeisen</button>
+      <button class="tab" data-tab="ma">Hauptgerichte</button>
+      <button class="tab" data-tab="br">Brote &amp; Beilagen</button>
+      <button class="tab" data-tab="dr">Getränke</button>
+    </div>
+
+    <!-- starters -->
+    <div class="mpanel act" data-p="st">
+      <div class="mc"><div class="mch"><div><p class="dn">Samosa Chaat</p><p class="dd">Knusprige Teigtaschen mit Kichererbsen, Tamarinden-Chutney &amp; frischem Koriander</p><span class="dt">Vegetarisch</span></div><span class="dp">7,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Tandoori Chicken Wings</p><p class="dd">Mariniert in Yoghurt &amp; Gewürzen, 24h gereift, im Tandoor-Ofen gebacken</p><span class="dt">Bestseller</span></div><span class="dp">11,50 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Paneer Tikka</p><p class="dd">Hausgemachter Frischkäse, mariniert in Gewürzen, gegrillt mit Paprika &amp; Zwiebeln</p><span class="dt">Vegetarisch</span></div><span class="dp">10,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Seekh Kebab</p><p class="dd">Gewürztes Lammhackfleisch, handgeformt auf Spieß, mit Minz-Chutney</p><span class="dt">Signature</span></div><span class="dp">12,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Mulligatawny Suppe</p><p class="dd">Reichhaltige Linsensuppe mit Kokosmilch, Ingwer &amp; frischen Kräutern</p><span class="dt">Vegan</span></div><span class="dp">8,50 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Onion Bhaji</p><p class="dd">Knusprige Zwiebelkrapfen in Kichererbsenteig, serviert mit Tamarinde</p><span class="dt">Vegan</span></div><span class="dp">7,50 €</span></div></div>
+    </div>
+
+    <!-- mains -->
+    <div class="mpanel" data-p="ma">
+      <div class="mc feat"><div class="mch"><div><p class="dn">Butter Chicken</p><p class="dd">Zartes Tandoor-Huhn in samtig-cremiger Tomatensauce mit Kashmiri-Chili &amp; frischer Butter</p><span class="dt">Bestseller</span></div><span class="dp">16,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Lamb Rogan Josh</p><p class="dd">Kashmirisches Schmorgericht aus zartem Lamm, langsam gegart mit Kardamom &amp; Nelken</p><span class="dt">Signature</span></div><span class="dp">19,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Dal Makhani</p><p class="dd">Schwarze Linsen, 12 Stunden köcheln gelassen, mit Butter, Sahne &amp; Bockshornklee</p><span class="dt">Vegetarisch</span></div><span class="dp">13,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Chicken Tikka Masala</p><p class="dd">Gegrillte Hähnchenstücke in würziger Tomatensauce mit frischer Sahne</p><span class="dt">Klassiker</span></div><span class="dp">17,50 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Palak Paneer</p><p class="dd">Frischer Spinat mit hausgemachtem Frischkäse, verfeinert mit Muskat &amp; Kreuzkümmel</p><span class="dt">Vegetarisch</span></div><span class="dp">15,50 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Tandoori Mixed Grill</p><p class="dd">Seekh Kebab, Chicken Tikka &amp; Lamm-Chops vom Tandoor-Ofen — ideal für zwei</p><span class="dt">Für zwei</span></div><span class="dp">29,90 €</span></div></div>
+    </div>
+
+    <!-- breads -->
+    <div class="mpanel" data-p="br">
+      <div class="mc"><div class="mch"><div><p class="dn">Garlic Naan</p><p class="dd">Frisch aus dem Tandoor, mit Knoblauch, Butter &amp; frischem Koriander</p><span class="dt">Bestseller</span></div><span class="dp">3,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Cheese Naan</p><p class="dd">Tandoor-Brot gefüllt mit geschmolzenem Käse &amp; frischen Kräutern</p></div><span class="dp">4,50 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Paratha</p><p class="dd">Geschichtetes Vollkornbrot mit Butter, ideal zur Sauce</p><span class="dt">Vegan</span></div><span class="dp">3,50 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Basmati-Reis</p><p class="dd">Duftendem Langkornreis, mit Safran und grünen Kardamomkapseln gegart</p><span class="dt">Vegan</span></div><span class="dp">3,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Vegetable Biryani</p><p class="dd">Duftreis mit frischem Gemüse, Safran, Rosinen &amp; karamellisierten Zwiebeln</p><span class="dt">Vegetarisch</span></div><span class="dp">14,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Raita</p><p class="dd">Hausgemachtes Joghurt-Dip mit Gurke, Minze &amp; Kreuzkümmel</p><span class="dt">Vegetarisch</span></div><span class="dp">2,90 €</span></div></div>
+    </div>
+
+    <!-- drinks -->
+    <div class="mpanel" data-p="dr">
+      <div class="mc feat"><div class="mch"><div><p class="dn">Mango Lassi</p><p class="dd">Hausgemachtes Joghurtgetränk mit reifen Alphonso-Mangos &amp; einer Prise Kardamom</p><span class="dt">Signature</span></div><span class="dp">5,50 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Masala Chai</p><p class="dd">Traditioneller indischer Gewürztee mit Ingwer, Zimt, Kardamom &amp; Milch</p></div><span class="dp">3,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Rose Sharbat</p><p class="dd">Erfrischendes Rosensirupgetränk mit Basil-Seeds &amp; Eiswürfeln</p><span class="dt">Alkoholfrei</span></div><span class="dp">4,50 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Kingfisher Bier</p><p class="dd">Das Original-Bier aus Indien – leicht &amp; erfrischend, perfekt zum Curry</p></div><span class="dp">4,90 €</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Indischer Rotwein</p><p class="dd">Sula Vineyards Shiraz aus Maharashtra – würzig &amp; vollmundig</p></div><span class="dp">8,90 € / Glas</span></div></div>
+      <div class="mc"><div class="mch"><div><p class="dn">Nimbu Pani</p><p class="dd">Frisch gepresste Limonade mit Schwarzsalz, Kreuzkümmel &amp; Minze</p><span class="dt">Alkoholfrei</span></div><span class="dp">4,20 €</span></div></div>
+    </div>
+
+    <div class="mfoot rev">
+      <p>Vollständige Speisekarte auch als PDF verfügbar</p>
+      <a href="#" class="btn btn-outline">Speisekarte herunterladen</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXP STRIP -->
+<div class="exp">
+  <div class="ei rev"><div class="ei-ic">🌿</div><h3>Frische Zutaten</h3><p>Täglich frisch geliefert vom lokalen Markt</p></div>
+  <div class="ed"></div>
+  <div class="ei rev"><div class="ei-ic">🔥</div><h3>Tandoor-Ofen</h3><p>Original Ton-Tandoor bei 400 °C</p></div>
+  <div class="ed"></div>
+  <div class="ei rev"><div class="ei-ic">🌶</div><h3>Maßgeschneiderte Schärfe</h3><p>Mild bis extra-scharf – nach Ihrem Wunsch</p></div>
+  <div class="ed"></div>
+  <div class="ei rev"><div class="ei-ic">🏆</div><h3>Ausgezeichnet</h3><p>Bestes indisches Restaurant 2023</p></div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery" class="gal-s sec">
+  <div class="wrap">
+    <span class="eyebrow tc rev">Atmosphäre</span>
+    <h2 class="h2 tc rev">Einblicke in unser<br/><em>Restaurant</em></h2>
+  </div>
+  <div class="gg">
+    <div class="gi gw rev"><div class="gp gp1"><span>Unser Restaurant</span></div></div>
+    <div class="gi rev"><div class="gp gp2"><span>Butter Chicken</span></div></div>
+    <div class="gi rev"><div class="gp gp3"><span>Tandoor-Küche</span></div></div>
+    <div class="gi rev"><div class="gp gp4"><span>Mixed Grill</span></div></div>
+    <div class="gi gw rev"><div class="gp gp5"><span>Park-Terrasse</span></div></div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section id="reserve" class="res-s">
+  <div class="wrap res-in">
+    <div>
+      <span class="eyebrow rev">Reservierung</span>
+      <h2 class="h2 rev">Reservieren Sie<br/><em>Ihren Tisch</em></h2>
+      <p class="res-desc rev">Wir freuen uns auf Sie! Für Gruppen über 8 Personen bitten wir um telefonische Voranmeldung.</p>
+      <div class="ri rev">
+        <div class="ri-it"><span class="ri-ic">📍</span><div><strong>Adresse</strong><span>Parkstraße 14, 80339 München</span></div></div>
+        <div class="ri-it"><span class="ri-ic">📞</span><div><strong>Telefon</strong><span>+49 89 12345678</span></div></div>
+        <div class="ri-it"><span class="ri-ic">✉️</span><div><strong>E-Mail</strong><span>info@singhrestaurant-am-park.de</span></div></div>
+      </div>
+      <div class="oh rev">
+        <h4>Öffnungszeiten</h4>
+        <table>
+          <tr><td>Mo, Mi – Fr</td><td>12:00 – 14:30 &amp; 17:30 – 22:30</td></tr>
+          <tr><td>Sa – So</td><td>12:00 – 23:00 (durchgehend)</td></tr>
+          <tr class="cl"><td>Dienstag</td><td>Ruhetag</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="rfw rev">
+      <form class="rf" id="rf">
+        <h3>Tisch anfragen</h3>
+        <div class="fr">
+          <div class="fg"><label>Vorname</label><input type="text" placeholder="Max" required/></div>
+          <div class="fg"><label>Nachname</label><input type="text" placeholder="Mustermann" required/></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label>E-Mail</label><input type="email" placeholder="max@email.de" required/></div>
+          <div class="fg"><label>Telefon</label><input type="tel" placeholder="+49 …"/></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label>Datum</label><input type="date" id="di" required/></div>
+          <div class="fg"><label>Uhrzeit</label>
+            <select required>
+              <option value="">Bitte wählen</option>
+              <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+              <option>17:30</option><option>18:00</option><option>18:30</option><option>19:00</option>
+              <option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label>Gäste</label>
+          <div class="gc">
+            <button type="button" class="cb" id="cminus">−</button>
+            <span id="gc-disp">2</span>
+            <button type="button" class="cb" id="cplus">+</button>
+          </div>
+          <input type="hidden" id="gi-h" value="2"/>
+        </div>
+        <div class="fg"><label>Besondere Wünsche</label><textarea placeholder="Allergien, Anlässe, Sitzwünsche …" rows="3"></textarea></div>
+        <button type="submit" class="btn btn-gold btn-full">Reservierung anfragen</button>
+        <p class="fn">Bestätigung per E-Mail innerhalb von 2 Stunden.</p>
+      </form>
+      <div class="fs" id="fs">
+        <div class="fs-ic">✦</div>
+        <h3>Anfrage gesendet!</h3>
+        <p>Wir bestätigen Ihre Reservierung in Kürze per E-Mail. Wir freuen uns auf Sie!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="contact" class="map-s">
+  <div class="mpl">
+    <div class="mg"></div>
+    <div class="moc">
+      <h4>Singh Restaurant am Park</h4>
+      <p>Parkstraße 14, 80339 München</p>
+      <a href="https://maps.google.com/?q=München+Parkstraße+14" target="_blank" rel="noopener" class="btn btn-gold btn-sm">Route planen</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap fi">
+    <div class="fb">
+      <a href="#home" class="logo"><span>✦</span><span>Singh am Park</span></a>
+      <p>Authentische nordindische Küche<br/>direkt am Park seit 2012.</p>
+      <div class="sl-row">
+        <a href="#" class="sl-a" aria-label="Instagram">📷</a>
+        <a href="#" class="sl-a" aria-label="Facebook">👥</a>
+        <a href="#" class="sl-a" aria-label="TripAdvisor">⭐</a>
+      </div>
+    </div>
+    <div class="fc">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#about">Über uns</a></li>
+        <li><a href="#menu">Speisekarte</a></li>
+        <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#reserve">Reservierung</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h5>Öffnungszeiten</h5>
+      <ul>
+        <li>Mo, Mi–Fr: 12–14:30 &amp; 17:30–22:30</li>
+        <li>Sa–So: 12:00 – 23:00</li>
+        <li class="cn">Di: Ruhetag</li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h5>Kontakt</h5>
+      <ul>
+        <li>Parkstraße 14, München</li>
+        <li>+49 89 12345678</li>
+        <li>info@singhrestaurant-am-park.de</li>
+      </ul>
+    </div>
+  </div>
+  <div class="fb-bot"><p>© 2024 Singh Restaurant am Park · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p></div>
+</footer>
+
+<script>
+// nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>55));
+
+// burger
+const bgb=document.getElementById('bgb'),nl=document.getElementById('nl');
+bgb.addEventListener('click',()=>nl.classList.toggle('open'));
+nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
+
+// reveal
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=`${i*.07}s`;e.target.classList.add('on');ro.unobserve(e.target)}})
+},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rev').forEach(el=>ro.observe(el));
+
+// tabs
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('act'));
+    document.querySelectorAll('.mpanel').forEach(x=>x.classList.remove('act'));
+    t.classList.add('act');
+    document.querySelector(`[data-p="${t.dataset.tab}"]`).classList.add('act');
+  });
+});
+
+// guest counter
+let g=2;const gd=document.getElementById('gc-disp'),gh=document.getElementById('gi-h');
+document.getElementById('cminus').addEventListener('click',()=>{if(g>1){g--;gd.textContent=g;gh.value=g}});
+document.getElementById('cplus').addEventListener('click',()=>{if(g<20){g++;gd.textContent=g;gh.value=g}});
+
+// form
+const rf=document.getElementById('rf'),fs=document.getElementById('fs');
+rf.addEventListener('submit',e=>{
+  e.preventDefault();
+  rf.style.cssText='opacity:0;transition:opacity .3s ease';
+  setTimeout(()=>{rf.style.display='none';fs.classList.add('on')},300);
+});
+
+// min date
+const di=document.getElementById('di');
+if(di) di.min=new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>
