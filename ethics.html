@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Code of Ethics — Port Quote</title>
+<meta name="description" content="Port Quote's Code of Ethics: how we operate and what clients, crews, and inspecting authorities can expect from us."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --hull:#080F18;--hull-2:#0D1C2B;--hull-3:#122030;
+  --amber:#F59E0B;--amber-2:#FBBF24;
+  --ocean:#0369A1;--steel:#64748B;--mist:#94A3B8;
+  --paper:#F1F5F9;--white:#FFFFFF;
+  --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.14);
+  --maxw:800px;--radius:10px;--radius-sm:6px;
+  --shadow:0 8px 32px rgba(0,0,0,.45);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--hull);color:var(--white);font-family:"Inter",system-ui,sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+/* ── Navbar ─────────────────────────────────────────────── */
+header{
+  position:fixed;top:12px;left:16px;right:16px;z-index:100;
+  background:rgba(8,15,24,.85);backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid var(--line-2);border-radius:var(--radius);
+  padding:0 24px;height:56px;display:flex;align-items:center;
+}
+.nav-inner{width:100%;max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:24px}
+.nav-brand{
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-weight:800;font-size:1.15rem;letter-spacing:-.02em;
+  color:var(--white);text-decoration:none;
+}
+.nav-brand span{color:var(--amber)}
+.nav-back{
+  margin-left:auto;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.82rem;font-weight:600;color:var(--mist);
+  text-decoration:none;transition:color .2s;
+}
+.nav-back:hover{color:var(--amber)}
+.nav-back svg{width:14px;height:14px}
+
+/* ── Page ────────────────────────────────────────────────── */
+.page{max-width:var(--maxw);margin:0 auto;padding:120px 24px 100px}
+
+/* ── Eyebrow + heading ───────────────────────────────────── */
+.eyebrow{
+  display:inline-block;
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:16px;
+}
+h1{
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.03em;
+  line-height:1.1;margin-bottom:12px;
+}
+.meta{color:var(--mist);font-size:.88rem;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.meta strong{color:var(--paper)}
+
+/* ── Intro ───────────────────────────────────────────────── */
+.intro{
+  background:var(--hull-2);border:1px solid var(--line-2);
+  border-left:3px solid var(--amber);
+  border-radius:var(--radius-sm);
+  padding:20px 24px;margin-bottom:48px;
+  font-size:1rem;color:var(--paper);line-height:1.78;
+}
+
+/* ── Sections ────────────────────────────────────────────── */
+.section{margin-bottom:40px}
+.section-header{
+  display:flex;align-items:flex-start;gap:16px;
+  margin-bottom:14px;
+}
+.section-num{
+  flex:none;
+  width:36px;height:36px;
+  background:rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.28);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-weight:800;font-size:.82rem;color:var(--amber);
+  margin-top:2px;
+}
+.section-title{
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-weight:700;font-size:1.05rem;letter-spacing:-.01em;
+  color:var(--white);line-height:1.3;padding-top:6px;
+}
+.section-body{
+  padding-left:52px;
+  color:var(--mist);font-size:.96rem;line-height:1.8;
+}
+
+/* ── Divider ─────────────────────────────────────────────── */
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,var(--amber) 0%,var(--line) 60%,transparent 100%);
+  margin:40px 0;opacity:.35;
+}
+
+/* ── Footer strip ────────────────────────────────────────── */
+.footer-strip{
+  background:var(--hull-2);border:1px solid var(--line);
+  border-radius:var(--radius);padding:28px 32px;margin-top:56px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  flex-wrap:wrap;
+}
+.footer-strip p{color:var(--mist);font-size:.88rem}
+.footer-strip a{color:var(--amber);text-decoration:none}
+.footer-strip a:hover{text-decoration:underline}
+.footer-strip .back-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber);color:var(--hull);
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+  font-weight:700;font-size:.85rem;
+  padding:10px 20px;border-radius:var(--radius-sm);
+  text-decoration:none;transition:background .2s,transform .2s;white-space:nowrap;
+}
+.footer-strip .back-btn:hover{background:var(--amber-2);transform:translateY(-1px)}
+
+@media(max-width:600px){
+  header{left:8px;right:8px}
+  .page{padding:100px 16px 80px}
+  .section-body{padding-left:0;margin-top:10px}
+  .section-num{margin-top:0}
+  .footer-strip{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Port<span>Quote</span></a>
+    <a class="nav-back" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to site
+    </a>
+  </div>
+</header>
+
+<main class="page">
+
+  <span class="eyebrow">Port Quote · portquote.com</span>
+  <h1>Code of Ethics</h1>
+  <p class="meta">
+    <strong>Montréal, Québec, Canada</strong> &nbsp;·&nbsp; Last updated: June 2026 &nbsp;·&nbsp;
+    Questions: <a href="mailto:ops@portquote.com" style="color:var(--amber);text-decoration:none">ops@portquote.com</a>
+  </p>
+
+  <div class="intro">
+    Our work is trusted because a hold either passes inspection or it doesn't. There is no room to fake a clean hold, and we don't try. This Code sets out how we operate and what our clients, the crews we work alongside, and the authorities who inspect our work can expect from us.
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Integrity in Cleaning and Certification</div>
+    </div>
+    <div class="section-body">
+      We never represent a hold as cleaned to a standard it has not met. We do not sign off, photograph, or report work as complete when it isn't. If a hold cannot meet the required standard within the agreed scope, we say so before the inspection, not after. Our 100% inspection pass record exists because we don't cut corners to protect it.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Food and Cargo Safety</div>
+    </div>
+    <div class="section-body">
+      Much of what we clean for carries grain and other agricultural cargo bound for people and livestock. We treat contamination prevention — residue, infestation, odour, chemical carryover — as a safety obligation, not a checklist. We follow CFIA and USDA requirements as a floor, not a ceiling.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Environmental Responsibility</div>
+    </div>
+    <div class="section-body">
+      We work on the St. Lawrence and we intend to keep it clean. Washings, sweepings, residues and waste are handled and disposed of in accordance with port, provincial, federal and MARPOL requirements. We do not discharge waste improperly to save time or cost, and we will not be instructed to.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Health and Safety</div>
+    </div>
+    <div class="section-body">
+      Cargo holds are confined spaces, and we treat them that way. We follow confined-space entry, fall-protection, ventilation and hazardous-residue procedures for every job, for our own crews and anyone working alongside them. No deadline justifies an unsafe entry. Any worker may stop a job they reasonably believe is unsafe, without penalty.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Honesty in Quotes and Billing</div>
+    </div>
+    <div class="section-body">
+      We quote what we believe the work will cost and we bill for work actually performed. Additional charges are explained, not hidden. We don't inflate scope, manufacture delays, or pad disbursements.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Anti-Bribery and Fair Dealing</div>
+    </div>
+    <div class="section-body">
+      We do not offer, give, solicit or accept bribes, kickbacks or improper payments to win work, speed clearance, or influence an inspection — from agents, surveyors, port staff, officials or anyone else. We compete on the quality and reliability of our work.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">Conflicts of Interest</div>
+    </div>
+    <div class="section-body">
+      We disclose any relationship or interest that could compromise our judgement on a job, and we do not let personal interest override a client's or the public's safety interest.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title">Confidentiality</div>
+    </div>
+    <div class="section-body">
+      Vessel schedules, cargo details, commercial terms and client information are kept confidential and used only to perform the work, except where disclosure is required by law or regulation.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-title">Regulatory Compliance</div>
+    </div>
+    <div class="section-body">
+      We comply with the requirements of the CFIA, USDA, Transport Canada, port authorities and the jurisdictions in which we operate. Where a client's instruction would require us to breach a regulation, we decline the instruction.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title">People and Subcontractors</div>
+    </div>
+    <div class="section-body">
+      We treat our crews and the people on the vessels we service with respect, and we hold any subcontractor we engage to the standards in this Code. We do not tolerate harassment, discrimination, or unsafe or exploitative labour practices.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title">Accountability</div>
+    </div>
+    <div class="section-body">
+      If we get something wrong, we own it and put it right. Concerns about a breach of this Code can be raised with us directly at <a href="mailto:ops@portquote.com" style="color:var(--amber);text-decoration:none">ops@portquote.com</a>, and we will not retaliate against anyone who raises one in good faith.
+    </div>
+  </div>
+
+  <div class="footer-strip">
+    <p>This Code reflects how Port Quote operates and is reviewed periodically.<br/>
+    Questions or concerns: <a href="mailto:ops@portquote.com">ops@portquote.com</a></p>
+    <a class="back-btn" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Port Quote
+    </a>
+  </div>
+
+</main>
+
+</body>
+</html>
