@@ -12,276 +12,276 @@
 :root{
   --hull:#080F18;--hull-2:#0D1C2B;--hull-3:#122030;
   --amber:#F59E0B;--amber-2:#FBBF24;
-  --ocean:#0369A1;--steel:#64748B;--mist:#94A3B8;
-  --paper:#F1F5F9;--white:#FFFFFF;
+  --steel:#64748B;--mist:#94A3B8;--paper:#F1F5F9;--white:#FFFFFF;
   --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.14);
-  --maxw:800px;--radius:10px;--radius-sm:6px;
+  --maxw:1160px;--radius:10px;--radius-sm:6px;
   --shadow:0 8px 32px rgba(0,0,0,.45);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--hull);color:var(--white);font-family:"Inter",system-ui,sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+body{background:var(--hull);color:var(--white);font-family:"Inter",system-ui,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
 
-/* ── Navbar ─────────────────────────────────────────────── */
+/* ── Navbar (matches index.html exactly) ────────────────── */
 header{
   position:fixed;top:12px;left:16px;right:16px;z-index:100;
   background:rgba(8,15,24,.85);backdrop-filter:blur(18px) saturate(1.5);
   border:1px solid var(--line-2);border-radius:var(--radius);
-  padding:0 24px;height:56px;display:flex;align-items:center;
 }
-.nav-inner{width:100%;max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:24px}
-.nav-brand{
+.nav-wrap{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;
+  padding:0 28px;height:60px;gap:32px;
+}
+.brand{
   font-family:"Plus Jakarta Sans",system-ui,sans-serif;
-  font-weight:800;font-size:1.15rem;letter-spacing:-.02em;
-  color:var(--white);text-decoration:none;
+  font-weight:800;font-size:1.18rem;letter-spacing:-.02em;
+  color:var(--white);text-decoration:none;white-space:nowrap;
 }
-.nav-brand span{color:var(--amber)}
-.nav-back{
-  margin-left:auto;
-  display:inline-flex;align-items:center;gap:6px;
+.brand span{color:var(--amber)}
+.nav-links{
+  display:flex;align-items:center;gap:4px;margin-left:auto;
+}
+.nav-links a{
+  font-size:.85rem;font-weight:500;color:var(--mist);
+  text-decoration:none;padding:6px 12px;border-radius:6px;
+  transition:color .2s,background .2s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.07)}
+.nav-links a.active{color:var(--amber)}
+.nav-back-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.28);
+  color:var(--amber);
+  font-size:.82rem;font-weight:600;
+  padding:7px 16px;border-radius:var(--radius-sm);
+  text-decoration:none;transition:background .2s;white-space:nowrap;
+}
+.nav-back-btn:hover{background:rgba(245,158,11,.22)}
+.nav-back-btn svg{width:13px;height:13px;flex:none}
+
+/* ── Lang picker (minimal, matches site) ─────────────────── */
+.lang-sel{
   font-size:.82rem;font-weight:600;color:var(--mist);
-  text-decoration:none;transition:color .2s;
+  background:rgba(255,255,255,.06);border:1px solid var(--line-2);
+  border-radius:var(--radius-sm);padding:6px 10px;cursor:pointer;
+  outline:none;transition:border-color .2s;
+  -webkit-appearance:none;appearance:none;
 }
-.nav-back:hover{color:var(--amber)}
-.nav-back svg{width:14px;height:14px}
+.lang-sel:hover{border-color:var(--amber);color:var(--white)}
 
-/* ── Page ────────────────────────────────────────────────── */
-.page{max-width:var(--maxw);margin:0 auto;padding:120px 24px 100px}
+/* ── Page layout ─────────────────────────────────────────── */
+.page{max-width:960px;margin:0 auto;padding:112px 24px 100px}
 
-/* ── Eyebrow + heading ───────────────────────────────────── */
+/* ── Hero head ───────────────────────────────────────────── */
 .eyebrow{
   display:inline-block;
   font-family:"Plus Jakarta Sans",system-ui,sans-serif;
   font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--amber);margin-bottom:16px;
+  color:var(--amber);margin-bottom:14px;
 }
 h1{
   font-family:"Plus Jakarta Sans",system-ui,sans-serif;
   font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.03em;
-  line-height:1.1;margin-bottom:12px;
+  line-height:1.1;margin-bottom:10px;
 }
-.meta{color:var(--mist);font-size:.88rem;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--line)}
-.meta strong{color:var(--paper)}
+.meta{
+  color:var(--mist);font-size:.88rem;
+  padding-bottom:28px;margin-bottom:36px;
+  border-bottom:1px solid var(--line);
+}
+.meta a{color:var(--amber);text-decoration:none}
 
-/* ── Intro ───────────────────────────────────────────────── */
+/* ── Intro callout ───────────────────────────────────────── */
 .intro{
-  background:var(--hull-2);border:1px solid var(--line-2);
+  background:var(--hull-2);
+  border:1px solid var(--line-2);
   border-left:3px solid var(--amber);
   border-radius:var(--radius-sm);
-  padding:20px 24px;margin-bottom:48px;
-  font-size:1rem;color:var(--paper);line-height:1.78;
+  padding:20px 26px;margin-bottom:40px;
+  color:var(--paper);font-size:1rem;line-height:1.78;
 }
 
-/* ── Sections ────────────────────────────────────────────── */
-.section{margin-bottom:40px}
-.section-header{
-  display:flex;align-items:flex-start;gap:16px;
+/* ── Ethics cards grid ───────────────────────────────────── */
+.ethics-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
   margin-bottom:14px;
 }
-.section-num{
-  flex:none;
-  width:36px;height:36px;
+.ethics-card{
+  background:var(--hull-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 24px;
+  transition:border-color .2s,background .2s;
+}
+.ethics-card:hover{border-color:rgba(245,158,11,.35);background:var(--hull-3)}
+.ethics-card.full{grid-column:1 / -1}
+.card-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:10px}
+.card-num{
+  flex:none;width:32px;height:32px;
   background:rgba(245,158,11,.12);
   border:1px solid rgba(245,158,11,.28);
-  border-radius:8px;
+  border-radius:7px;
   display:flex;align-items:center;justify-content:center;
   font-family:"Plus Jakarta Sans",system-ui,sans-serif;
-  font-weight:800;font-size:.82rem;color:var(--amber);
-  margin-top:2px;
+  font-weight:800;font-size:.78rem;color:var(--amber);
+  margin-top:1px;
 }
-.section-title{
+.card-title{
   font-family:"Plus Jakarta Sans",system-ui,sans-serif;
-  font-weight:700;font-size:1.05rem;letter-spacing:-.01em;
-  color:var(--white);line-height:1.3;padding-top:6px;
+  font-weight:700;font-size:.97rem;
+  color:var(--white);line-height:1.3;padding-top:5px;
 }
-.section-body{
-  padding-left:52px;
-  color:var(--mist);font-size:.96rem;line-height:1.8;
+.card-body{
+  padding-left:46px;
+  color:var(--steel);font-size:.9rem;line-height:1.78;
 }
+.card-body a{color:var(--amber);text-decoration:none}
+.card-body a:hover{text-decoration:underline}
 
-/* ── Divider ─────────────────────────────────────────────── */
-.divider{
-  height:1px;
-  background:linear-gradient(90deg,var(--amber) 0%,var(--line) 60%,transparent 100%);
-  margin:40px 0;opacity:.35;
-}
-
-/* ── Footer strip ────────────────────────────────────────── */
-.footer-strip{
+/* ── Footer note ─────────────────────────────────────────── */
+.ethics-foot{
   background:var(--hull-2);border:1px solid var(--line);
-  border-radius:var(--radius);padding:28px 32px;margin-top:56px;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  flex-wrap:wrap;
+  border-radius:var(--radius);padding:20px 26px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;margin-top:6px;
 }
-.footer-strip p{color:var(--mist);font-size:.88rem}
-.footer-strip a{color:var(--amber);text-decoration:none}
-.footer-strip a:hover{text-decoration:underline}
-.footer-strip .back-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--amber);color:var(--hull);
-  font-family:"Plus Jakarta Sans",system-ui,sans-serif;
-  font-weight:700;font-size:.85rem;
-  padding:10px 20px;border-radius:var(--radius-sm);
-  text-decoration:none;transition:background .2s,transform .2s;white-space:nowrap;
-}
-.footer-strip .back-btn:hover{background:var(--amber-2);transform:translateY(-1px)}
+.ethics-foot p{color:var(--steel);font-size:.88rem}
+.ethics-foot a{color:var(--amber);text-decoration:none}
+.ethics-foot a:hover{text-decoration:underline}
 
-@media(max-width:600px){
+@media(max-width:640px){
   header{left:8px;right:8px}
-  .page{padding:100px 16px 80px}
-  .section-body{padding-left:0;margin-top:10px}
-  .section-num{margin-top:0}
-  .footer-strip{flex-direction:column;align-items:flex-start}
+  .nav-links{display:none}
+  .page{padding:96px 16px 80px}
+  .ethics-grid{grid-template-columns:1fr}
+  .ethics-card.full{grid-column:1}
+  .card-body{padding-left:0;margin-top:8px}
+  .ethics-foot{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Port<span>Quote</span></a>
-    <a class="nav-back" href="index.html">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html">Port<span>Quote</span></a>
+    <nav class="nav-links">
+      <a href="index.html#services" data-en="Services" data-fr="Services" data-es="Servicios" data-zh="服务">Services</a>
+      <a href="index.html#coverage" data-en="Coverage" data-fr="Territoire" data-es="Cobertura" data-zh="覆盖区域">Coverage</a>
+      <a href="index.html#about" data-en="About" data-fr="À propos" data-es="Nosotros" data-zh="关于我们">About</a>
+      <a href="index.html#careers" data-en="Careers" data-fr="Carrières" data-es="Empleos" data-zh="职业机会">Careers</a>
+      <a href="ethics.html" class="active" data-en="Ethics" data-fr="Éthique" data-es="Ética" data-zh="道德准则">Ethics</a>
+      <a href="index.html#contact" data-en="Contact" data-fr="Contact" data-es="Contacto" data-zh="联系我们">Contact</a>
+    </nav>
+    <select class="lang-sel" id="langSel" aria-label="Select language">
+      <option value="en">EN</option>
+      <option value="fr">FR</option>
+      <option value="es">ES</option>
+      <option value="zh">中文</option>
+    </select>
+    <a class="nav-back-btn" href="index.html">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to site
+      <span data-en="Back to site" data-fr="Retour" data-es="Volver" data-zh="返回主页">Back to site</span>
     </a>
   </div>
 </header>
 
 <main class="page">
 
-  <span class="eyebrow">Port Quote · portquote.com</span>
-  <h1>Code of Ethics</h1>
+  <span class="eyebrow" data-en="Port Quote · portquote.com" data-fr="Port Quote · portquote.com" data-es="Port Quote · portquote.com" data-zh="Port Quote · portquote.com">Port Quote · portquote.com</span>
+  <h1 data-en="Code of Ethics" data-fr="Code d'éthique" data-es="Código de Ética" data-zh="道德准则">Code of Ethics</h1>
   <p class="meta">
-    <strong>Montréal, Québec, Canada</strong> &nbsp;·&nbsp; Last updated: June 2026 &nbsp;·&nbsp;
-    Questions: <a href="mailto:ops@portquote.com" style="color:var(--amber);text-decoration:none">ops@portquote.com</a>
+    <span data-en="Last updated: June 2026 · Montréal, Québec, Canada · " data-fr="Dernière mise à jour : juin 2026 · Montréal, Québec, Canada · " data-es="Última actualización: junio 2026 · Montréal, Québec, Canadá · " data-zh="最后更新：2026年6月 · 加拿大魁北克蒙特利尔 · ">Last updated: June 2026 · Montréal, Québec, Canada · </span><a href="mailto:ops@portquote.com">ops@portquote.com</a>
   </p>
 
-  <div class="intro">
+  <div class="intro" data-en="Our work is trusted because a hold either passes inspection or it doesn't. There is no room to fake a clean hold, and we don't try. This Code sets out how we operate and what our clients, the crews we work alongside, and the authorities who inspect our work can expect from us." data-fr="Notre travail inspire confiance parce qu'une cale passe l'inspection ou non. Il n'y a pas de place pour simuler une cale propre, et nous n'essayons pas. Ce Code définit notre façon d'opérer et ce que nos clients, les équipages avec lesquels nous travaillons et les autorités d'inspection peuvent attendre de nous." data-es="Nuestro trabajo es de confianza porque una bodega pasa la inspección o no. No hay margen para fingir una bodega limpia, y no lo intentamos. Este Código establece cómo operamos y qué pueden esperar de nosotros nuestros clientes, las tripulaciones y las autoridades inspectoras." data-zh="我们的工作值得信赖，因为货舱要么通过检验，要么通不过。没有弄虚作假的余地，我们也不会这样做。本准则阐明了我们的运营方式，以及我们的客户、与我们并肩工作的船员和检验机构对我们的期望。">
     Our work is trusted because a hold either passes inspection or it doesn't. There is no room to fake a clean hold, and we don't try. This Code sets out how we operate and what our clients, the crews we work alongside, and the authorities who inspect our work can expect from us.
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">1</div>
-      <div class="section-title">Integrity in Cleaning and Certification</div>
+  <div class="ethics-grid">
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">1</div><div class="card-title" data-en="Integrity in Cleaning and Certification" data-fr="Intégrité dans le nettoyage et la certification" data-es="Integridad en Limpieza y Certificación" data-zh="清洁与认证的诚信">Integrity in Cleaning and Certification</div></div>
+      <div class="card-body" data-en="We never represent a hold as cleaned to a standard it has not met. We do not sign off, photograph, or report work as complete when it isn't. If a hold cannot meet the required standard within the agreed scope, we say so before the inspection, not after. Our 100% inspection pass record exists because we don't cut corners to protect it." data-fr="Nous ne représentons jamais une cale comme nettoyée selon une norme qu'elle n'a pas atteinte. Si une cale ne peut pas atteindre la norme requise, nous le disons avant l'inspection, pas après. Notre taux de réussite de 100% existe parce que nous ne prenons pas de raccourcis." data-es="Nunca representamos una bodega como limpiada según un estándar que no ha cumplido. Si una bodega no puede alcanzar el estándar requerido, lo decimos antes de la inspección, no después. Nuestro récord del 100% existe porque no cortamos esquinas." data-zh="我们绝不将未达标的货舱描述为已完成清洁。如果货舱在约定范围内无法达到要求的标准，我们会在检验前说明，而不是在检验后。我们100%的检验通过率正是因为我们不走捷径。">We never represent a hold as cleaned to a standard it has not met. We do not sign off, photograph, or report work as complete when it isn't. If a hold cannot meet the required standard within the agreed scope, we say so before the inspection, not after. Our 100% inspection pass record exists because we don't cut corners to protect it.</div>
     </div>
-    <div class="section-body">
-      We never represent a hold as cleaned to a standard it has not met. We do not sign off, photograph, or report work as complete when it isn't. If a hold cannot meet the required standard within the agreed scope, we say so before the inspection, not after. Our 100% inspection pass record exists because we don't cut corners to protect it.
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">2</div><div class="card-title" data-en="Food and Cargo Safety" data-fr="Sécurité alimentaire et des cargaisons" data-es="Seguridad Alimentaria y de Carga" data-zh="食品和货物安全">Food and Cargo Safety</div></div>
+      <div class="card-body" data-en="Much of what we clean for carries grain and other agricultural cargo bound for people and livestock. We treat contamination prevention — residue, infestation, odour, chemical carryover — as a safety obligation, not a checklist. We follow CFIA and USDA requirements as a floor, not a ceiling." data-fr="Une grande partie de ce que nous nettoyons transporte des céréales destinées aux personnes et au bétail. Nous traitons la prévention de la contamination comme une obligation de sécurité, pas une liste de contrôle. Les exigences de l'ACIA et de l'USDA sont un plancher, pas un plafond." data-es="Gran parte de lo que limpiamos transporta granos destinados a personas y animales. Tratamos la prevención de contaminación como una obligación de seguridad. Los requisitos de CFIA y USDA son un piso, no un techo." data-zh="我们清洁的船只大多运载粮食，供人畜食用。我们将污染预防视为安全义务，而非核查清单。CFIA和USDA要求是我们的底线，而非上限。">Much of what we clean for carries grain and other agricultural cargo bound for people and livestock. We treat contamination prevention — residue, infestation, odour, chemical carryover — as a safety obligation, not a checklist. We follow CFIA and USDA requirements as a floor, not a ceiling.</div>
     </div>
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">3</div><div class="card-title" data-en="Environmental Responsibility" data-fr="Responsabilité environnementale" data-es="Responsabilidad Ambiental" data-zh="环境责任">Environmental Responsibility</div></div>
+      <div class="card-body" data-en="We work on the St. Lawrence and we intend to keep it clean. Washings, sweepings, residues and waste are handled and disposed of in accordance with port, provincial, federal and MARPOL requirements. We do not discharge waste improperly to save time or cost, and we will not be instructed to." data-fr="Nous travaillons sur le Saint-Laurent et nous entendons le garder propre. Les résidus et déchets sont traités conformément aux exigences MARPOL et fédérales. Nous ne déchargeons pas les déchets de manière inappropriée." data-es="Trabajamos en el San Lorenzo y pretendemos mantenerlo limpio. Los residuos y desechos se manejan de acuerdo con los requisitos MARPOL y federales. No descargamos residuos de manera inapropiada." data-zh="我们在圣劳伦斯河上作业，致力于保持其清洁。所有废物均按照MARPOL及联邦要求处置。我们不会为节省时间或成本而违规排放废物。">We work on the St. Lawrence and we intend to keep it clean. Washings, sweepings, residues and waste are handled and disposed of in accordance with port, provincial, federal and MARPOL requirements. We do not discharge waste improperly to save time or cost, and we will not be instructed to.</div>
+    </div>
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">4</div><div class="card-title" data-en="Health and Safety" data-fr="Santé et sécurité" data-es="Salud y Seguridad" data-zh="健康与安全">Health and Safety</div></div>
+      <div class="card-body" data-en="Cargo holds are confined spaces, and we treat them that way. We follow confined-space entry, fall-protection, ventilation and hazardous-residue procedures for every job, for our own crews and anyone working alongside them. No deadline justifies an unsafe entry. Any worker may stop a job they reasonably believe is unsafe, without penalty." data-fr="Les cales sont des espaces confinés, et nous les traitons comme tels. Nous suivons les procédures d'entrée en espace confiné pour chaque travail. Aucune échéance ne justifie une entrée dangereuse. Tout travailleur peut arrêter un travail qu'il juge dangereux, sans pénalité." data-es="Las bodegas son espacios confinados. Seguimos los procedimientos de entrada en espacios confinados para cada trabajo. Ningún plazo justifica una entrada insegura. Cualquier trabajador puede detener un trabajo que considere inseguro, sin penalización." data-zh="货舱是密闭空间，我们将其视为密闭空间对待。每项工作都遵循密闭空间进入程序。任何截止日期都不能成为不安全进入的理由。任何工人均可停止其认为不安全的工作，不受处罚。">Cargo holds are confined spaces, and we treat them that way. We follow confined-space entry, fall-protection, ventilation and hazardous-residue procedures for every job, for our own crews and anyone working alongside them. No deadline justifies an unsafe entry. Any worker may stop a job they reasonably believe is unsafe, without penalty.</div>
+    </div>
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">5</div><div class="card-title" data-en="Honesty in Quotes and Billing" data-fr="Honnêteté dans les devis et la facturation" data-es="Honestidad en Cotizaciones y Facturación" data-zh="报价与账单的诚实">Honesty in Quotes and Billing</div></div>
+      <div class="card-body" data-en="We quote what we believe the work will cost and we bill for work actually performed. Additional charges are explained, not hidden. We don't inflate scope, manufacture delays, or pad disbursements." data-fr="Nous citons ce que nous croyons que le travail coûtera et facturons pour le travail réellement effectué. Les frais supplémentaires sont expliqués, pas cachés." data-es="Cotizamos lo que creemos que costará el trabajo y facturamos por el trabajo realizado. Los cargos adicionales se explican, no se ocultan." data-zh="我们按照预估成本报价，按实际完成工作计费。额外费用会明确说明，而非隐藏。我们不虚报范围或虚增支出。">We quote what we believe the work will cost and we bill for work actually performed. Additional charges are explained, not hidden. We don't inflate scope, manufacture delays, or pad disbursements.</div>
+    </div>
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">6</div><div class="card-title" data-en="Anti-Bribery and Fair Dealing" data-fr="Anti-corruption et pratiques équitables" data-es="Anticorrupción y Trato Justo" data-zh="反腐败与公平交易">Anti-Bribery and Fair Dealing</div></div>
+      <div class="card-body" data-en="We do not offer, give, solicit or accept bribes, kickbacks or improper payments to win work, speed clearance, or influence an inspection — from agents, surveyors, port staff, officials or anyone else. We compete on the quality and reliability of our work." data-fr="Nous n'offrons pas, ne donnons pas et n'acceptons pas de pots-de-vin ou paiements inappropriés. Nous nous faisons concurrence sur la qualité et la fiabilité de notre travail." data-es="No ofrecemos, damos ni aceptamos sobornos o pagos indebidos. Competimos en la calidad y confiabilidad de nuestro trabajo." data-zh="我们不提供、给予、索取或接受任何贿赂或不当款项。我们凭借工作质量和可靠性参与竞争。">We do not offer, give, solicit or accept bribes, kickbacks or improper payments to win work, speed clearance, or influence an inspection — from agents, surveyors, port staff, officials or anyone else. We compete on the quality and reliability of our work.</div>
+    </div>
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">7</div><div class="card-title" data-en="Conflicts of Interest" data-fr="Conflits d'intérêts" data-es="Conflictos de Interés" data-zh="利益冲突">Conflicts of Interest</div></div>
+      <div class="card-body" data-en="We disclose any relationship or interest that could compromise our judgement on a job, and we do not let personal interest override a client's or the public's safety interest." data-fr="Nous divulguons toute relation susceptible de compromettre notre jugement. Nous ne laissons pas l'intérêt personnel supplanter l'intérêt de sécurité d'un client." data-es="Divulgamos cualquier relación que pueda comprometer nuestro juicio. No permitimos que el interés personal prevalezca sobre el interés de seguridad de un cliente." data-zh="我们披露任何可能影响工作判断的关系或利益，不允许个人利益凌驾于客户或公众的安全利益之上。">We disclose any relationship or interest that could compromise our judgement on a job, and we do not let personal interest override a client's or the public's safety interest.</div>
+    </div>
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">8</div><div class="card-title" data-en="Confidentiality" data-fr="Confidentialité" data-es="Confidencialidad" data-zh="保密">Confidentiality</div></div>
+      <div class="card-body" data-en="Vessel schedules, cargo details, commercial terms and client information are kept confidential and used only to perform the work, except where disclosure is required by law or regulation." data-fr="Les horaires des navires, les détails de la cargaison et les informations des clients sont gardés confidentiels et utilisés uniquement pour effectuer le travail." data-es="Los horarios de los buques, los detalles de la carga y la información del cliente se mantienen confidenciales y se usan solo para realizar el trabajo." data-zh="船舶时刻表、货物详情、商业条款和客户信息严格保密，仅用于完成工作，法律要求披露的除外。">Vessel schedules, cargo details, commercial terms and client information are kept confidential and used only to perform the work, except where disclosure is required by law or regulation.</div>
+    </div>
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">9</div><div class="card-title" data-en="Regulatory Compliance" data-fr="Conformité réglementaire" data-es="Cumplimiento Regulatorio" data-zh="合规经营">Regulatory Compliance</div></div>
+      <div class="card-body" data-en="We comply with the requirements of the CFIA, USDA, Transport Canada, port authorities and the jurisdictions in which we operate. Where a client's instruction would require us to breach a regulation, we decline the instruction." data-fr="Nous respectons les exigences de l'ACIA, de l'USDA, de Transports Canada et des autorités portuaires. Lorsqu'une instruction d'un client nous obligerait à enfreindre une réglementation, nous la déclinons." data-es="Cumplimos con los requisitos de la CFIA, USDA, Transport Canada y las autoridades portuarias. Cuando una instrucción requeriría incumplir una regulación, rechazamos la instrucción." data-zh="我们遵守CFIA、USDA、加拿大运输部及港务局的要求。若客户指令要求我们违反法规，我们将拒绝该指令。">We comply with the requirements of the CFIA, USDA, Transport Canada, port authorities and the jurisdictions in which we operate. Where a client's instruction would require us to breach a regulation, we decline the instruction.</div>
+    </div>
+
+    <div class="ethics-card">
+      <div class="card-hd"><div class="card-num">10</div><div class="card-title" data-en="People and Subcontractors" data-fr="Personnel et sous-traitants" data-es="Personal y Subcontratistas" data-zh="人员与分包商">People and Subcontractors</div></div>
+      <div class="card-body" data-en="We treat our crews and the people on the vessels we service with respect, and we hold any subcontractor we engage to the standards in this Code. We do not tolerate harassment, discrimination, or unsafe or exploitative labour practices." data-fr="Nous traitons nos équipes avec respect et tenons tout sous-traitant aux normes de ce Code. Nous ne tolérons pas le harcèlement, la discrimination ou les pratiques de travail dangereuses." data-es="Tratamos a nuestros equipos con respeto y exigimos a los subcontratistas los estándares de este Código. No toleramos el acoso, la discriminación ni las prácticas laborales inseguras." data-zh="我们尊重地对待我们的船员和所服务船只上的人员，并要求分包商遵守本准则的标准。我们不容忍骚扰、歧视或不安全、剥削性的劳动行为。">We treat our crews and the people on the vessels we service with respect, and we hold any subcontractor we engage to the standards in this Code. We do not tolerate harassment, discrimination, or unsafe or exploitative labour practices.</div>
+    </div>
+
+    <div class="ethics-card full">
+      <div class="card-hd"><div class="card-num">11</div><div class="card-title" data-en="Accountability" data-fr="Responsabilité" data-es="Responsabilidad" data-zh="问责">Accountability</div></div>
+      <div class="card-body" data-en='If we get something wrong, we own it and put it right. Concerns about a breach of this Code can be raised with us directly at <a href="mailto:ops@portquote.com">ops@portquote.com</a>, and we will not retaliate against anyone who raises one in good faith.' data-fr='Si nous faisons quelque chose de mal, nous en assumons la responsabilité. Les préoccupations peuvent être soulevées à <a href="mailto:ops@portquote.com">ops@portquote.com</a>. Nous ne prenons pas de représailles contre quiconque soulève une préoccupation de bonne foi.' data-es='Si cometemos un error, lo asumimos. Las inquietudes pueden plantearse en <a href="mailto:ops@portquote.com">ops@portquote.com</a>. No tomaremos represalias contra nadie que plantee una inquietud de buena fe.' data-zh='如果我们犯了错误，我们承担责任并纠正。关于违反本准则的担忧可直接向<a href="mailto:ops@portquote.com">ops@portquote.com</a>提出，我们不会对出于善意提出问题的任何人采取报复行动。'>If we get something wrong, we own it and put it right. Concerns about a breach of this Code can be raised with us directly at <a href="mailto:ops@portquote.com">ops@portquote.com</a>, and we will not retaliate against anyone who raises one in good faith.</div>
+    </div>
+
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">2</div>
-      <div class="section-title">Food and Cargo Safety</div>
-    </div>
-    <div class="section-body">
-      Much of what we clean for carries grain and other agricultural cargo bound for people and livestock. We treat contamination prevention — residue, infestation, odour, chemical carryover — as a safety obligation, not a checklist. We follow CFIA and USDA requirements as a floor, not a ceiling.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">3</div>
-      <div class="section-title">Environmental Responsibility</div>
-    </div>
-    <div class="section-body">
-      We work on the St. Lawrence and we intend to keep it clean. Washings, sweepings, residues and waste are handled and disposed of in accordance with port, provincial, federal and MARPOL requirements. We do not discharge waste improperly to save time or cost, and we will not be instructed to.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">4</div>
-      <div class="section-title">Health and Safety</div>
-    </div>
-    <div class="section-body">
-      Cargo holds are confined spaces, and we treat them that way. We follow confined-space entry, fall-protection, ventilation and hazardous-residue procedures for every job, for our own crews and anyone working alongside them. No deadline justifies an unsafe entry. Any worker may stop a job they reasonably believe is unsafe, without penalty.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">5</div>
-      <div class="section-title">Honesty in Quotes and Billing</div>
-    </div>
-    <div class="section-body">
-      We quote what we believe the work will cost and we bill for work actually performed. Additional charges are explained, not hidden. We don't inflate scope, manufacture delays, or pad disbursements.
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">6</div>
-      <div class="section-title">Anti-Bribery and Fair Dealing</div>
-    </div>
-    <div class="section-body">
-      We do not offer, give, solicit or accept bribes, kickbacks or improper payments to win work, speed clearance, or influence an inspection — from agents, surveyors, port staff, officials or anyone else. We compete on the quality and reliability of our work.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">7</div>
-      <div class="section-title">Conflicts of Interest</div>
-    </div>
-    <div class="section-body">
-      We disclose any relationship or interest that could compromise our judgement on a job, and we do not let personal interest override a client's or the public's safety interest.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">8</div>
-      <div class="section-title">Confidentiality</div>
-    </div>
-    <div class="section-body">
-      Vessel schedules, cargo details, commercial terms and client information are kept confidential and used only to perform the work, except where disclosure is required by law or regulation.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">9</div>
-      <div class="section-title">Regulatory Compliance</div>
-    </div>
-    <div class="section-body">
-      We comply with the requirements of the CFIA, USDA, Transport Canada, port authorities and the jurisdictions in which we operate. Where a client's instruction would require us to breach a regulation, we decline the instruction.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">10</div>
-      <div class="section-title">People and Subcontractors</div>
-    </div>
-    <div class="section-body">
-      We treat our crews and the people on the vessels we service with respect, and we hold any subcontractor we engage to the standards in this Code. We do not tolerate harassment, discrimination, or unsafe or exploitative labour practices.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-num">11</div>
-      <div class="section-title">Accountability</div>
-    </div>
-    <div class="section-body">
-      If we get something wrong, we own it and put it right. Concerns about a breach of this Code can be raised with us directly at <a href="mailto:ops@portquote.com" style="color:var(--amber);text-decoration:none">ops@portquote.com</a>, and we will not retaliate against anyone who raises one in good faith.
-    </div>
-  </div>
-
-  <div class="footer-strip">
-    <p>This Code reflects how Port Quote operates and is reviewed periodically.<br/>
-    Questions or concerns: <a href="mailto:ops@portquote.com">ops@portquote.com</a></p>
-    <a class="back-btn" href="index.html">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Port Quote
-    </a>
+  <div class="ethics-foot">
+    <p data-en="This Code reflects how Port Quote operates and is reviewed periodically." data-fr="Ce Code reflète la façon dont Port Quote opère et est revu périodiquement." data-es="Este Código refleja cómo opera Port Quote y se revisa periódicamente." data-zh="本准则反映了Port Quote的运营方式，并定期审查。">This Code reflects how Port Quote operates and is reviewed periodically.</p>
+    <a href="mailto:ops@portquote.com">ops@portquote.com</a>
   </div>
 
 </main>
 
+<script>
+(function(){
+  var sel = document.getElementById('langSel');
+  function applyLang(lang){
+    document.querySelectorAll('[data-'+lang+']').forEach(function(el){
+      el.innerHTML = el.getAttribute('data-'+lang);
+    });
+    try{ localStorage.setItem('pq_lang', lang); } catch(e){}
+  }
+  var saved = (function(){ try{ return localStorage.getItem('pq_lang'); } catch(e){ return null; } })();
+  var lang = saved || 'en';
+  sel.value = lang;
+  applyLang(lang);
+  sel.addEventListener('change', function(){ applyLang(this.value); });
+})();
+</script>
 </body>
 </html>
