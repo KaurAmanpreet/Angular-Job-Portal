@@ -968,6 +968,80 @@
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
     html { scroll-behavior: auto !important; }
   }
+
+  /* ── Code of Ethics ─────────────────────────────────────── */
+  .ethics { background: var(--hull-2); border-top: 1px solid var(--line); }
+  .ethics-intro {
+    background: var(--hull-3);
+    border: 1px solid var(--line-2);
+    border-left: 3px solid var(--amber);
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+    margin-bottom: 48px;
+    color: var(--paper);
+    font-size: 1rem;
+    line-height: 1.78;
+  }
+  .ethics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .ethics-item {
+    background: var(--hull);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    transition: border-color .2s;
+  }
+  .ethics-item:hover { border-color: rgba(245,158,11,.35); }
+  .ethics-item-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .ethics-num {
+    flex: none;
+    width: 32px; height: 32px;
+    background: rgba(245,158,11,.12);
+    border: 1px solid rgba(245,158,11,.28);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 800; font-size: .78rem; color: var(--amber);
+  }
+  .ethics-title {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 700; font-size: .95rem;
+    color: var(--white); line-height: 1.3;
+  }
+  .ethics-body {
+    color: var(--steel);
+    font-size: .9rem;
+    line-height: 1.75;
+    padding-left: 46px;
+  }
+  .ethics-note {
+    background: var(--hull);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 24px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .ethics-note p { color: var(--steel); font-size: .88rem; }
+  .ethics-note a { color: var(--amber); text-decoration: none; }
+  .ethics-note a:hover { text-decoration: underline; }
+  @media (max-width: 720px) {
+    .ethics-grid { grid-template-columns: 1fr; }
+    .ethics-body { padding-left: 0; margin-top: 8px; }
+  }
 </style>
 </head>
 <body>
@@ -984,6 +1058,7 @@
       <a href="#coverage" data-en="Coverage" data-fr="Territoire" data-es="Cobertura" data-zh="覆盖区域">Coverage</a>
       <a href="#about" data-en="About" data-fr="À propos" data-es="Nosotros" data-zh="关于我们">About</a>
       <a href="#careers" data-en="Careers" data-fr="Carrières" data-es="Empleos" data-zh="职业机会">Careers</a>
+      <a href="#ethics" data-en="Ethics" data-fr="Éthique" data-es="Ética" data-zh="道德准则">Ethics</a>
       <a href="#contact" data-en="Contact" data-fr="Contact" data-es="Contacto" data-zh="联系我们">Contact</a>
       <div class="lang-picker" id="langPicker">
         <button class="lang-btn" id="lang" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
@@ -1414,6 +1489,115 @@
   </div>
 </section>
 
+<!-- ── CODE OF ETHICS ────────────────────────────────── -->
+<section id="ethics" class="ethics section-pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="How we operate" data-fr="Notre façon d'opérer" data-es="Cómo operamos" data-zh="我们的运营方式">How we operate</span>
+      <h2 data-en="Code of Ethics" data-fr="Code d'éthique" data-es="Código de Ética" data-zh="道德准则">Code of Ethics</h2>
+      <p data-en="Last updated June 2026 · portquote.com · Montréal, Québec" data-fr="Dernière mise à jour juin 2026 · portquote.com · Montréal, Québec" data-es="Última actualización junio 2026 · portquote.com · Montréal, Québec" data-zh="最后更新：2026年6月 · portquote.com · 蒙特利尔，魁北克">Last updated June 2026 · portquote.com · Montréal, Québec</p>
+    </div>
+
+    <div class="ethics-intro" data-en="Our work is trusted because a hold either passes inspection or it doesn't. There is no room to fake a clean hold, and we don't try. This Code sets out how we operate and what our clients, the crews we work alongside, and the authorities who inspect our work can expect from us." data-fr="Notre travail inspire confiance parce qu'une cale passe l'inspection ou non. Il n'y a pas de place pour simuler une cale propre, et nous n'essayons pas. Ce Code définit notre façon d'opérer et ce que nos clients, les équipages avec lesquels nous travaillons et les autorités qui inspectent notre travail peuvent attendre de nous." data-es="Nuestro trabajo es de confianza porque una bodega pasa la inspección o no. No hay margen para fingir una bodega limpia, y no lo intentamos. Este Código establece cómo operamos y qué pueden esperar de nosotros nuestros clientes, las tripulaciones con las que trabajamos y las autoridades que inspeccionan nuestro trabajo." data-zh="我们的工作值得信赖，因为货舱要么通过检验，要么通不过。没有弄虚作假的余地，我们也不会这样做。本准则阐明了我们的运营方式，以及我们的客户、与我们并肩工作的船员和检验我们工作的机构对我们的期望。">
+      Our work is trusted because a hold either passes inspection or it doesn't. There is no room to fake a clean hold, and we don't try. This Code sets out how we operate and what our clients, the crews we work alongside, and the authorities who inspect our work can expect from us.
+    </div>
+
+    <div class="ethics-grid">
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">1</div>
+          <div class="ethics-title" data-en="Integrity in Cleaning and Certification" data-fr="Intégrité dans le nettoyage et la certification" data-es="Integridad en Limpieza y Certificación" data-zh="清洁与认证的诚信">Integrity in Cleaning and Certification</div>
+        </div>
+        <div class="ethics-body" data-en="We never represent a hold as cleaned to a standard it has not met. We do not sign off, photograph, or report work as complete when it isn't. If a hold cannot meet the required standard within the agreed scope, we say so before the inspection, not after. Our 100% inspection pass record exists because we don't cut corners to protect it." data-fr="Nous ne représentons jamais une cale comme nettoyée selon une norme qu'elle n'a pas atteinte. Nous ne signons pas, ne photographions pas et ne rapportons pas un travail comme terminé quand il ne l'est pas. Notre taux de réussite de 100% aux inspections existe parce que nous ne prenons pas de raccourcis." data-es="Nunca representamos una bodega como limpiada según un estándar que no ha cumplido. No firmamos, fotografiamos ni reportamos trabajo como completo cuando no lo está. Nuestro récord del 100% de aprobación existe porque no cortamos esquinas." data-zh="我们绝不将未达标的货舱描述为已完成清洁。我们不会在工作未完成时签署、拍照或汇报。如果货舱在约定范围内无法达到要求的标准，我们会在检验前说明，而不是在检验后。我们100%的检验通过率正是因为我们不走捷径。">We never represent a hold as cleaned to a standard it has not met. We do not sign off, photograph, or report work as complete when it isn't. If a hold cannot meet the required standard within the agreed scope, we say so before the inspection, not after. Our 100% inspection pass record exists because we don't cut corners to protect it.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">2</div>
+          <div class="ethics-title" data-en="Food and Cargo Safety" data-fr="Sécurité alimentaire et des cargaisons" data-es="Seguridad Alimentaria y de Carga" data-zh="食品和货物安全">Food and Cargo Safety</div>
+        </div>
+        <div class="ethics-body" data-en="Much of what we clean for carries grain and other agricultural cargo bound for people and livestock. We treat contamination prevention — residue, infestation, odour, chemical carryover — as a safety obligation, not a checklist. We follow CFIA and USDA requirements as a floor, not a ceiling." data-fr="Une grande partie de ce que nous nettoyons transporte des céréales et d'autres cargaisons agricoles destinées aux personnes et au bétail. Nous traitons la prévention de la contamination comme une obligation de sécurité, pas une liste de contrôle." data-es="Gran parte de lo que limpiamos transporta granos y otros productos agrícolas destinados a personas y animales. Tratamos la prevención de contaminación como una obligación de seguridad, no una lista de verificación." data-zh="我们清洁的船只大多运载粮食和其他农业货物，供人畜食用。我们将污染预防——残留、虫害、气味、化学品携带——视为安全义务，而非核查清单。CFIA和USDA要求是我们的底线，而非上限。">Much of what we clean for carries grain and other agricultural cargo bound for people and livestock. We treat contamination prevention — residue, infestation, odour, chemical carryover — as a safety obligation, not a checklist. We follow CFIA and USDA requirements as a floor, not a ceiling.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">3</div>
+          <div class="ethics-title" data-en="Environmental Responsibility" data-fr="Responsabilité environnementale" data-es="Responsabilidad Ambiental" data-zh="环境责任">Environmental Responsibility</div>
+        </div>
+        <div class="ethics-body" data-en="We work on the St. Lawrence and we intend to keep it clean. Washings, sweepings, residues and waste are handled and disposed of in accordance with port, provincial, federal and MARPOL requirements. We do not discharge waste improperly to save time or cost, and we will not be instructed to." data-fr="Nous travaillons sur le Saint-Laurent et nous entendons le garder propre. Les lavages, balayages, résidus et déchets sont traités conformément aux exigences portuaires, provinciales, fédérales et MARPOL. Nous ne déchargeons pas les déchets de manière inappropriée." data-es="Trabajamos en el San Lorenzo y pretendemos mantenerlo limpio. Los lavados, barridos, residuos y desechos se manejan de acuerdo con los requisitos portuarios, provinciales, federales y MARPOL." data-zh="我们在圣劳伦斯河上作业，我们致力于保持其清洁。所有冲洗水、清扫物、残留物和废物均按照港口、省级、联邦及MARPOL要求处理和处置。我们不会为节省时间或成本而违规排放废物。">We work on the St. Lawrence and we intend to keep it clean. Washings, sweepings, residues and waste are handled and disposed of in accordance with port, provincial, federal and MARPOL requirements. We do not discharge waste improperly to save time or cost, and we will not be instructed to.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">4</div>
+          <div class="ethics-title" data-en="Health and Safety" data-fr="Santé et sécurité" data-es="Salud y Seguridad" data-zh="健康与安全">Health and Safety</div>
+        </div>
+        <div class="ethics-body" data-en="Cargo holds are confined spaces, and we treat them that way. We follow confined-space entry, fall-protection, ventilation and hazardous-residue procedures for every job. No deadline justifies an unsafe entry. Any worker may stop a job they reasonably believe is unsafe, without penalty." data-fr="Les cales à marchandises sont des espaces confinés, et nous les traitons comme tels. Nous suivons les procédures d'entrée en espace confiné pour chaque travail. Aucune échéance ne justifie une entrée dangereuse." data-es="Las bodegas de carga son espacios confinados, y las tratamos como tal. Seguimos los procedimientos de entrada en espacios confinados para cada trabajo. Ningún plazo justifica una entrada insegura." data-zh="货舱是密闭空间，我们将其视为密闭空间对待。每项工作都遵循密闭空间进入、防坠落、通风和危险残留物处理程序。任何截止日期都不能成为不安全进入的理由。">Cargo holds are confined spaces, and we treat them that way. We follow confined-space entry, fall-protection, ventilation and hazardous-residue procedures for every job. No deadline justifies an unsafe entry. Any worker may stop a job they reasonably believe is unsafe, without penalty.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">5</div>
+          <div class="ethics-title" data-en="Honesty in Quotes and Billing" data-fr="Honnêteté dans les devis et la facturation" data-es="Honestidad en Cotizaciones y Facturación" data-zh="报价与账单的诚实">Honesty in Quotes and Billing</div>
+        </div>
+        <div class="ethics-body" data-en="We quote what we believe the work will cost and we bill for work actually performed. Additional charges are explained, not hidden. We don't inflate scope, manufacture delays, or pad disbursements." data-fr="Nous citons ce que nous croyons que le travail coûtera et nous facturons pour le travail réellement effectué. Les frais supplémentaires sont expliqués, pas cachés." data-es="Cotizamos lo que creemos que costará el trabajo y facturamos por el trabajo realmente realizado. Los cargos adicionales se explican, no se ocultan." data-zh="我们按照预估成本报价，按实际完成工作计费。额外费用会明确说明，而非隐藏。我们不虚报范围、制造延误或虚增支出。">We quote what we believe the work will cost and we bill for work actually performed. Additional charges are explained, not hidden. We don't inflate scope, manufacture delays, or pad disbursements.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">6</div>
+          <div class="ethics-title" data-en="Anti-Bribery and Fair Dealing" data-fr="Anti-corruption et pratiques équitables" data-es="Anticorrupción y Trato Justo" data-zh="反腐败与公平交易">Anti-Bribery and Fair Dealing</div>
+        </div>
+        <div class="ethics-body" data-en="We do not offer, give, solicit or accept bribes, kickbacks or improper payments to win work, speed clearance, or influence an inspection — from agents, surveyors, port staff, officials or anyone else. We compete on the quality and reliability of our work." data-fr="Nous n'offrons pas, ne donnons pas, ne sollicitons pas et n'acceptons pas de pots-de-vin ou de paiements inappropriés. Nous nous faisons concurrence sur la qualité et la fiabilité de notre travail." data-es="No ofrecemos, damos, solicitamos ni aceptamos sobornos o pagos indebidos. Competimos en la calidad y confiabilidad de nuestro trabajo." data-zh="我们不提供、给予、索取或接受贿赂、回扣或不当款项以赢得工作、加速清关或影响检验。我们凭借工作质量和可靠性参与竞争。">We do not offer, give, solicit or accept bribes, kickbacks or improper payments to win work, speed clearance, or influence an inspection — from agents, surveyors, port staff, officials or anyone else. We compete on the quality and reliability of our work.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">7</div>
+          <div class="ethics-title" data-en="Conflicts of Interest" data-fr="Conflits d'intérêts" data-es="Conflictos de Interés" data-zh="利益冲突">Conflicts of Interest</div>
+        </div>
+        <div class="ethics-body" data-en="We disclose any relationship or interest that could compromise our judgement on a job, and we do not let personal interest override a client's or the public's safety interest." data-fr="Nous divulguons toute relation ou intérêt susceptible de compromettre notre jugement sur un travail." data-es="Divulgamos cualquier relación o interés que pueda comprometer nuestro juicio en un trabajo." data-zh="我们披露任何可能影响工作判断的关系或利益，不允许个人利益凌驾于客户或公众的安全利益之上。">We disclose any relationship or interest that could compromise our judgement on a job, and we do not let personal interest override a client's or the public's safety interest.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">8</div>
+          <div class="ethics-title" data-en="Confidentiality" data-fr="Confidentialité" data-es="Confidencialidad" data-zh="保密">Confidentiality</div>
+        </div>
+        <div class="ethics-body" data-en="Vessel schedules, cargo details, commercial terms and client information are kept confidential and used only to perform the work, except where disclosure is required by law or regulation." data-fr="Les horaires des navires, les détails de la cargaison, les termes commerciaux et les informations des clients sont gardés confidentiels." data-es="Los horarios de los buques, los detalles de la carga, los términos comerciales y la información del cliente se mantienen confidenciales." data-zh="船舶时刻表、货物详情、商业条款和客户信息严格保密，仅用于完成工作，法律法规要求披露的除外。">Vessel schedules, cargo details, commercial terms and client information are kept confidential and used only to perform the work, except where disclosure is required by law or regulation.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">9</div>
+          <div class="ethics-title" data-en="Regulatory Compliance" data-fr="Conformité réglementaire" data-es="Cumplimiento Regulatorio" data-zh="合规经营">Regulatory Compliance</div>
+        </div>
+        <div class="ethics-body" data-en="We comply with the requirements of the CFIA, USDA, Transport Canada, port authorities and the jurisdictions in which we operate. Where a client's instruction would require us to breach a regulation, we decline the instruction." data-fr="Nous respectons les exigences de l'ACIA, de l'USDA, de Transports Canada et des autorités portuaires. Lorsqu'une instruction d'un client nous obligerait à enfreindre une réglementation, nous déclinons l'instruction." data-es="Cumplimos con los requisitos de la CFIA, USDA, Transport Canada y las autoridades portuarias. Cuando una instrucción de un cliente requeriría incumplir una regulación, rechazamos la instrucción." data-zh="我们遵守CFIA、USDA、加拿大运输部、港务局及我们运营所在司法管辖区的要求。若客户指令要求我们违反法规，我们将拒绝该指令。">We comply with the requirements of the CFIA, USDA, Transport Canada, port authorities and the jurisdictions in which we operate. Where a client's instruction would require us to breach a regulation, we decline the instruction.</div>
+      </div>
+
+      <div class="ethics-item">
+        <div class="ethics-item-header">
+          <div class="ethics-num">10</div>
+          <div class="ethics-title" data-en="People and Subcontractors" data-fr="Personnel et sous-traitants" data-es="Personal y Subcontratistas" data-zh="人员与分包商">People and Subcontractors</div>
+        </div>
+        <div class="ethics-body" data-en="We treat our crews and the people on the vessels we service with respect, and we hold any subcontractor we engage to the standards in this Code. We do not tolerate harassment, discrimination, or unsafe or exploitative labour practices." data-fr="Nous traitons nos équipes et les personnes sur les navires que nous desservons avec respect. Nous ne tolérons pas le harcèlement, la discrimination ou les pratiques de travail dangereuses." data-es="Tratamos a nuestros equipos y a las personas en los buques con respeto. No toleramos el acoso, la discriminación ni las prácticas laborales inseguras o explotadoras." data-zh="我们尊重地对待我们的船员和所服务船只上的人员，并要求我们聘用的分包商遵守本准则的标准。我们不容忍骚扰、歧视或不安全、剥削性的劳动行为。">We treat our crews and the people on the vessels we service with respect, and we hold any subcontractor we engage to the standards in this Code. We do not tolerate harassment, discrimination, or unsafe or exploitative labour practices.</div>
+      </div>
+
+      <div class="ethics-item" style="grid-column: 1 / -1;">
+        <div class="ethics-item-header">
+          <div class="ethics-num">11</div>
+          <div class="ethics-title" data-en="Accountability" data-fr="Responsabilité" data-es="Responsabilidad" data-zh="问责">Accountability</div>
+        </div>
+        <div class="ethics-body" data-en="If we get something wrong, we own it and put it right. Concerns about a breach of this Code can be raised with us directly at ops@portquote.com, and we will not retaliate against anyone who raises one in good faith." data-fr="Si nous faisons quelque chose de mal, nous en assumons la responsabilité et rectifions la situation. Les préoccupations concernant une violation de ce Code peuvent être soulevées directement à ops@portquote.com." data-es="Si cometemos un error, lo asumimos y lo corregimos. Las inquietudes sobre una violación de este Código pueden plantearse directamente en ops@portquote.com." data-zh="如果我们犯了错误，我们承担责任并纠正。关于违反本准则的担忧可直接向ops@portquote.com提出，我们不会对出于善意提出问题的任何人采取报复行动。">If we get something wrong, we own it and put it right. Concerns about a breach of this Code can be raised with us directly at <a href="mailto:ops@portquote.com" style="color:var(--amber)">ops@portquote.com</a>, and we will not retaliate against anyone who raises one in good faith.</div>
+      </div>
+    </div>
+
+    <div class="ethics-note">
+      <p>This Code reflects how Port Quote operates and is reviewed periodically. · <a href="mailto:ops@portquote.com">ops@portquote.com</a></p>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- ── FOOTER ─────────────────────────────────────────── -->
@@ -1426,7 +1610,6 @@
     <span data-en="St. Lawrence · Saguenay · Great Lakes · Maritimes" data-fr="Saint-Laurent · Saguenay · Grands Lacs · Maritimes" data-es="San Lorenzo · Saguenay · Grandes Lagos · Marítimas" data-zh="圣劳伦斯河 · 萨格奈河 · 大湖区 · 大西洋省份">
       St. Lawrence · Saguenay · Great Lakes · Maritimes
     </span>
-    <a href="ethics.html" style="display:inline-block;margin-top:12px;font-size:.78rem;color:rgba(255,255,255,.35);text-decoration:none;letter-spacing:.04em;transition:color .2s;" onmouseover="this.style.color=&apos;#F59E0B&apos;" onmouseout="this.style.color=&apos;rgba(255,255,255,.35)&apos;">Code of Ethics</a>
   </div>
 </footer>
 
