@@ -1,22 +1,60 @@
 
-    <!-- Header-->
-    <header class="bg-dark py-5">
-      <div class="container px-5">
-          <div class="row gx-5 align-items-center justify-content-center">
-              <div class="col-lg-8 col-xl-7 col-xxl-6">
-                  <div class="my-5 text-center text-xl-start">
-                      <h1 class="display-5 fw-bolder text-white mb-2">Find Dream Job Here</h1>
-                      <p class="lead fw-normal text-white-50 mb-4"></p>
-                      <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start text-white">
-                            <label for="searchInput">Search by Title:</label>
-                            <input type="text" id="searchInput" [(ngModel)]="searchTerm" />
-                            <button class="btn btn-primary btn-lg px-4 me-sm-3" (click)="filterJobs()">search</button>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
-          </div>
-      </div>
-  </header>
+<!-- Hero -->
+<header class="hero">
+  <div class="container px-5">
+    <div class="row gx-5 align-items-center justify-content-center">
+      <div class="col-lg-8 col-xl-7 col-xxl-6">
+        <div class="my-5 text-center text-xl-start">
+          <span class="hero-badge"><i class="bi bi-stars"></i> New jobs added every day</span>
+          <h1 class="display-4 fw-bolder text-white mb-3 mt-3">Find Your Dream Job Here</h1>
+          <p class="lead fw-normal text-white-50 mb-4">Search live openings from real companies and take the next step in your career.</p>
 
-  <app-list-jobs [filteredJobs]="filteredJobs"></app-list-jobs>
+          <div class="search-box">
+            <i class="bi bi-search search-icon"></i>
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Job title, e.g. Frontend Developer"
+              [(ngModel)]="searchTerm"
+              (keyup.enter)="filterJobs()"
+              aria-label="Search by job title"
+            />
+            <button class="btn btn-primary search-btn" type="button" (click)="filterJobs()">
+              <i class="bi bi-search d-inline d-sm-none"></i>
+              <span class="d-none d-sm-inline">Search</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+        <img class="img-fluid rounded-3 my-5 hero-image" src="https://dummyimage.com/600x400/343a40/6c757d" alt="Illustration of people searching for jobs" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Value props -->
+<section class="perks-strip">
+  <div class="container px-5">
+    <div class="row gy-4 text-center">
+      <div class="col-md-4">
+        <div class="perk-icon"><i class="bi bi-broadcast"></i></div>
+        <h5 class="fw-bold mb-1">Live Job Feed</h5>
+        <p class="text-muted mb-0">Openings update in real time, so you never miss a fresh listing.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="perk-icon"><i class="bi bi-patch-check"></i></div>
+        <h5 class="fw-bold mb-1">Verified Employers</h5>
+        <p class="text-muted mb-0">Every job is posted directly by the hiring company.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="perk-icon"><i class="bi bi-send-check"></i></div>
+        <h5 class="fw-bold mb-1">Simple Applications</h5>
+        <p class="text-muted mb-0">Browse, filter, and apply in just a couple of clicks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-list-jobs [filteredJobs]="filteredJobs"></app-list-jobs>
