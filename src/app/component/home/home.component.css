@@ -1,0 +1,81 @@
+.hero {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #1f2937 0%, #312e81 55%, #4c1d95 100%);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e0e7ff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+}
+
+.hero-image {
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.35));
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 0.4rem 0.5rem 0.4rem 1.1rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.search-icon {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.6rem 0.25rem;
+  font-size: 1rem;
+  min-width: 0;
+}
+
+.search-btn {
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.perks-strip {
+  padding: 3rem 0;
+  background: #f8f9fb;
+}
+
+.perk-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+  color: #4c1d95;
+  background: #ede9fe;
+  border-radius: 50%;
+}
+
+@media (max-width: 575.98px) {
+  .search-box {
+    flex-wrap: wrap;
+    border-radius: 1.25rem;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+}
